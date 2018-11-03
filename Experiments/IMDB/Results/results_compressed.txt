@@ -1,0 +1,32 @@
+Configuration: LCLCCL
+Compression per layers:
+Embedding: (w: 5059/6000900) (z_voc: 5054/20003) 
+LSTM: (w_x: 31/153600) (w_h: 48/65536) (z_x: 7/300) (z_h: 9/128) (gates: 20/512) 
+Dense: (w: 9/128) 
+Overall compression: 1208.5028171727056
+Accuracy: (clip): 0.8410
+
+Configuration: LLLCCL
+Compression per layers:
+Embedding: (w: 262/6000900) (z_voc: 265/20003) 
+LSTM: (w_x: 17/153600) (w_h: 33/65536) (z_x: 1/300) (z_h: 7/128) (gates: 18/512) 
+Dense: (w: 7/128) 
+Overall compression: 19498.946707852698
+Accuracy: (clip): 0.8328
+
+Configuration: LLLCLL
+Compression per layers:
+Embedding: (w: 315/6000900) (z_voc: 316/20003) 
+LSTM: (w_x: 19/153600) (w_h: 32/65536) (z_x: 1/300) (z_h: 7/128) (gates: 19/512) 
+Dense: (w: 7/128) 
+Overall compression: 16676.04289499528
+Accuracy: (clip): 0.8401
+
+Configuration: LLLLLL
+Compression per layers:
+Embedding: (w: 304/6000900) (z_voc: 307/20003) 
+LSTM: (w_x: 6/153600) (w_h: 20/65536) (z_x: 1/300) (z_h: 7/128) (gates: 8/512) 
+Dense: (w: 7/128) 
+Overall compression: 18457.45994010512
+Accuracy: (clip): 0.8387
+
