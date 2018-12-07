@@ -1,10 +1,13 @@
-
+from __future__ import division
 import numpy as np
 import os
 import re
 from collections import defaultdict
 import operator
 import pandas as pd
+
+import struct
+import sys
 
 def texts_to_sequences(texts):
     texts = [[i for i in seq.lower().split(" ") if i] for seq in texts]
@@ -61,7 +64,7 @@ class Reviews:
             return self.X[batch_start:batch_end], self.y[batch_start:batch_end],\
                    self.mask[batch_start:batch_end]
     
-def load_matrix(path='imdb.npz', num_words=None, skip_top=0,
+def load_matrix(path, num_words=None, skip_top=0,
               maxlen=None, seed=113,
               start_char=1, oov_char=2, index_from=3, mask=False, **kwargs):
     """
@@ -69,10 +72,6 @@ def load_matrix(path='imdb.npz', num_words=None, skip_top=0,
     Loads data matrixes from npz file, crops and pads seqs and returns
     shuffled (x_train, y_train), (x_test, y_test)
     """
-    if not os.path.exists(path):
-        print("Downloading matrix data into current folder")
-        os.system("wget https://s3.amazonaws.com/text-datasets/imdb.npz")
-        
     with np.load(path) as f:
         x_train, labels_train = f['x_train'], f['y_train']
         x_test, labels_test = f['x_test'], f['y_test']
@@ -133,60 +132,6 @@ def load_matrix(path='imdb.npz', num_words=None, skip_top=0,
     else:
         return (x_train, y_train, mask_train), (x_test, y_test, mask_test)
 
-def process_text_agnews(tab_path_train, tab_path_test, \
-                      path_to_save="./agnews_texts", \
-                      lower=True, max_vocab_size=100*1000,
-                      doc_count_threshold=1):
-    """
-    adapted from TensorFlow: 
-    https://github.com/tensorflow/models/blob/
-           master/research/adversarial_text/data/
-           
-    transforms texts into ids seq
-    creates npz file with 5 keys: x_train, x_test (arrays of lists), 
-                                  y_train, y_test (arrays of labels),
-                                  array of words sorted by desc. freq
-    """
-    
-    eos_symb = "</s>"
-    def generate_texts(tab_path, vocab_freqs, lower=True):
-        docs = []
-        targets = []
-        vocab_ids = dict([(line[0].strip(), i) for i, line 
-                  in enumerate(vocab_freqs)])
-        tab = pd.read_csv(tab_path).values
-        for row in tab:
-            label, doc = int(row[0]), " ".join(row[1:])
-            if lower:
-                doc = doc.lower()
-
-            tokens = [s for s in re.split(r'\W+', doc) 
-                      if s and not s.isspace()]
-            ids = []
-            for token in tokens:
-                if token in vocab_ids:
-                    ids.append(vocab_ids[token])
-            ids.append(vocab_ids[eos_symb])
-            if len(ids) < 2:
-                continue
-            docs.append(ids)
-            targets.append(label)
-
-        return docs, targets
-
-    vocab_freqs = generate_vocab(tab_path=tab_path_train, \
-                                 max_vocab_size=max_vocab_size,\
-                                 doc_count_threshold=doc_count_threshold, \
-                                 lower=lower)
-    docs_train, targets_train = generate_texts(tab_path_train,\
-                                               vocab_freqs, lower)
-    docs_test, targets_test = generate_texts(tab_path_test,\
-                                             vocab_freqs, lower)
-    np.savez(path_to_save, x_train=docs_train, x_test=docs_test,
-            y_train=targets_train, y_test=targets_test, 
-            vocab=np.array([item[0] for item in vocab_freqs]))
-    return path_to_save+".npz"
-
 
 def generate_vocab_paths(paths, lower=False):
     vocab_freqs = defaultdict(int)
@@ -239,9 +184,9 @@ def generate_vocab(paths=None,\
                   tab_path=None):
     
         if paths is not None:
-            vocab_freqs = generate_vocab_paths(paths, lower)
+            vocab_freqs, doc_counts = generate_vocab_paths(paths, lower)
         elif tab is not None:
-            vocab_freqs = generate_vocab_tab(tab_path, lower)
+            vocab_freqs, doc_counts = generate_vocab_tab(tab_path, lower)
         else:
             raise ValueError("Either paths or tab must be provided")
         
@@ -265,9 +210,63 @@ def generate_vocab(paths=None,\
             fout.write("\n".join(words))
         return ordered_vocab_freqs
 
+def process_text_agnews(tab_path_train, tab_path_test, \
+                      path_to_save="./", \
+                      lower=True, max_vocab_size=100*1000,
+                      doc_count_threshold=1):
+    """
+    adapted from TensorFlow: 
+    https://github.com/tensorflow/models/blob/
+           master/research/adversarial_text/data/
+           
+    transforms texts into ids seq
+    creates npz file with 5 keys: x_train, x_test (arrays of lists), 
+                                  y_train, y_test (arrays of labels),
+                                  array of words sorted by desc. freq
+    """
+    
+    eos_symb = "</s>"
+    def generate_texts(tab_path, vocab_freqs, lower=True):
+        docs = []
+        targets = []
+        vocab_ids = dict([(line[0].strip(), i) for i, line 
+                  in enumerate(vocab_freqs)])
+        tab = pd.read_csv(tab_path).values
+        for row in tab:
+            label, doc = int(row[0]), " ".join(row[1:])
+            if lower:
+                doc = doc.lower()
 
+            tokens = [s for s in re.split(r'\W+', doc) 
+                      if s and not s.isspace()]
+            ids = []
+            for token in tokens:
+                if token in vocab_ids:
+                    ids.append(vocab_ids[token])
+            ids.append(vocab_ids[eos_symb])
+            if len(ids) < 2:
+                continue
+            docs.append(ids)
+            targets.append(label)
+
+        return docs, targets
+
+    vocab_freqs = generate_vocab(tab_path=tab_path_train, \
+                                 max_vocab_size=max_vocab_size,\
+                                 doc_count_threshold=doc_count_threshold, \
+                                 lower=lower,\
+                                 save_path=os.path.join(path_to_save, "agnews_words.txt"))
+    docs_train, targets_train = generate_texts(tab_path_train,\
+                                               vocab_freqs, lower)
+    docs_test, targets_test = generate_texts(tab_path_test,\
+                                             vocab_freqs, lower)
+    np.savez(os.path.join(path_to_save, "agnews_texts"), x_train=docs_train, x_test=docs_test,
+            y_train=targets_train, y_test=targets_test, 
+            vocab=np.array([item[0] for item in vocab_freqs]))
+    return path_to_save+".npz"
+    
 def process_text_imdb(paths_train, paths_test, labels, \
-                      path_to_save="./imdb_texts", \
+                      path_to_save="./", \
                       lower=False, max_vocab_size=100*1000,
                       doc_count_threshold=1):
     """
@@ -310,17 +309,73 @@ def process_text_imdb(paths_train, paths_test, labels, \
         return docs, targets
     
     vocab_freqs = generate_vocab(paths_train, max_vocab_size,\
-                                 doc_count_threshold, lower)
+                                 doc_count_threshold, lower, \
+                                 save_path=os.path.join(path_to_save, "imdb_words.txt"))
     docs_train, targets_train = generate_texts(paths_train, labels, \
                                                vocab_freqs, lower)
     docs_test, targets_test = generate_texts(paths_test, labels, \
                                              vocab_freqs, lower)
-    np.savez(path_to_save, x_train=docs_train, x_test=docs_test,
+    np.savez(os.path.join(path_to_save, "imdb_texts"), x_train=docs_train, x_test=docs_test,
             y_train=targets_train, y_test=targets_test, 
             vocab=np.array([item[0] for item in vocab_freqs]))
     return path_to_save+".npz"
 
+def filter_large_embeddings_file(emb_fn, vocab_fn, path_to_save="./", max_vectors_num=52000):
+    words = open(vocab_fn).read().split("\n")
+    words = set(words)
+    FLOAT_SIZE = 4
+    vectors = dict()
     
+    with open(emb_fn, 'rb') as f:
+        c = None
+
+        # read the header
+        header = b""
+        while c != b"\n":
+            c = f.read(1)
+            header += c
+
+        num_vectors, vector_len = (int(x) for x in header.split())
+
+        while len(vectors) < max_vectors_num: # processing the whole file takes too much time
+            word = b""        
+            while True:
+                c = f.read(1)
+                if c == b" ":
+                    break
+                word += c
+
+            binary_vector = f.read(FLOAT_SIZE * vector_len)
+            if str(word, "utf-8") in words:
+                vectors[word] = [ struct.unpack_from('f', binary_vector, i)[0] 
+                              for i in range(0, len(binary_vector), FLOAT_SIZE) ]
+
+            sys.stdout.write("%d, %d%%\r" % (len(vectors), len(vectors) / num_vectors * 100))
+            sys.stdout.flush()
+    
+    with open(path_to_save, 'w') as fout:
+        for key in vectors:
+            fout.write(str(key, "utf-8")+";"+str(vectors[key])+"\n")
+            
+def filter_large_embeddings_txt(emb_fn, vocab_fn, path_to_save="./", max_vectors_num=52000):
+    vectors = {}
+    with open(emb_fn) as fin:
+        for line in fin:
+            items = line[:-1].split(" ")
+            key = items[0]
+            if key in words:
+                value = items[1:]
+                value = [float(x) for x in value]
+                vectors[key] = value
+            sys.stdout.write("%d\r" % (len(vectors)))
+            sys.stdout.flush()
+            if len(vectors) == max_vectors_num:
+                break
+    
+    with open(path_to_save, 'w') as fout:
+        for key in vectors:
+            fout.write(str(key, "utf-8")+";"+str(vectors[key])+"\n")
+
     
 def init_embedding_with_word2vec(matrix, vocab_file, w2v_file, index_from=0):
     """
@@ -335,8 +390,7 @@ def init_embedding_with_word2vec(matrix, vocab_file, w2v_file, index_from=0):
             value = eval(value)
             vectors[key] = value
     if matrix.shape[1] != len(list(vectors.items())[0][1]):
-        print ("Shapes of embedding layer and of pretrained embeddings mismatch")
-        return
+        raise ValueError("Shapes of embedding layer and of pretrained embeddings mismatch")
     n = 0
     for i, word in enumerate(words[:vocab_size]):
         if word in vectors:
@@ -344,8 +398,3 @@ def init_embedding_with_word2vec(matrix, vocab_file, w2v_file, index_from=0):
             n += 1
     print("Initialized %d embeddings"%n)
     return matrix
-            
-     
-    
-    
-    

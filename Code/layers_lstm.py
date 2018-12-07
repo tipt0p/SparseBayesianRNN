@@ -33,8 +33,9 @@ class LSTM(MergeLayer):
                  gradient_steps=-1,
                  mask_input=None,
                  only_return_final=False,
+                 hid_prop = False,
                  **kwargs):
-        incomings = [incoming]
+        incomings = incoming if hid_prop else [incoming]
         self.mask_incoming_index = -1
         if mask_input is not None:
             incomings.append(mask_input)
@@ -55,6 +56,7 @@ class LSTM(MergeLayer):
         self.mu_hid = T.ones(1, dtype=floatX)
         self.log_sigma2_hid = T.ones(1, dtype=floatX)
         self.learn_init = learn_init
+        self.hid_prop = hid_prop
  
         def add_gate_params(gate, gate_name):
             """ Convenience function for adding layer parameters from a Gate
@@ -114,8 +116,10 @@ class LSTM(MergeLayer):
         input_shape = input_shapes[0]
         if self.only_return_final:
             return input_shape[0], self.num_units
+        elif self.hid_prop:
+            return 2, input_shape[0], input_shape[1], self.num_units
         else:
-            return input_shape[0], input_shape[1], self.num_units
+            return input_shape[0], input_shape[1], self.num_units 
     
     def get_output_for(self, inputs, **kwargs):
         input = inputs[0]
@@ -161,8 +165,11 @@ class LSTM(MergeLayer):
              self.W_hid_to_cell, self.W_hid_to_outgate, self.hidden_noise, self.hidden_clip,
              self.mu_hid, self.log_sigma2_hid]
         
-        hid_init = T.dot(T.ones((num_batch, 1)), self.hid_init)
-        cell_init = T.dot(T.ones((num_batch, 1)), self.cell_init)
+        if self.hid_prop:
+            hid_init, cell_init = inputs[1][0,:,:], inputs[1][1,:,:]
+        else:
+            hid_init = T.dot(T.ones((num_batch, 1)), self.hid_init)
+            cell_init = T.dot(T.ones((num_batch, 1)), self.cell_init)
         
         cell_out, hid_out = theano.scan(
             fn=step_fun,
@@ -177,11 +184,15 @@ class LSTM(MergeLayer):
             hid_out = hid_out[-1]
         else:
             hid_out = hid_out.dimshuffle(1, 0, 2)
+            cell_out = cell_out.dimshuffle(1, 0, 2)
  
             if self.backwards:
                 hid_out = hid_out[:, ::-1]
- 
-        return hid_out
+            
+        if self.hid_prop:
+            return T.concatenate([hid_out[np.newaxis,:,:,:],cell_out[np.newaxis,:,:,:]])
+        else:
+            return hid_out
 
 class BayesianLSTM(LSTM):
     """
@@ -194,7 +205,7 @@ class BayesianLSTM(LSTM):
            config[1]: hat Z preactivation multiplicative weights
                      L N D C
            config[2]: Z input and hidden multiplicative weights
-                     L N D C
+                     L N D C I R
     """
     def __init__(self, incoming, num_units,
                  log_sigma_in_init = -3., log_sigma_hid_init = -3.,
@@ -214,12 +225,13 @@ class BayesianLSTM(LSTM):
                  gradient_steps=-1,
                  mask_input=None,
                  only_return_final=False,
+                 hid_prop = False,
                  config="DCC",
                  **kwargs):
  
         super(BayesianLSTM, self).__init__(incoming, num_units, ingate, forgetgate, cell, outgate,
                  hid_init, cell_init, learn_init, nonlinearity, backwards, gradient_steps, mask_input, 
-                                            only_return_final, **kwargs)
+                                            only_return_final, hid_prop, **kwargs)
         self.name = 'BayesianLSTM'
         self.reg = True
         self.config = config
@@ -232,13 +244,13 @@ class BayesianLSTM(LSTM):
         else:
             self.logsig_w_in = T.zeros(4, dtype=floatX)
         
-        if self.config[2] in {"L", "N", "D"}:
+        if self.config[2] in {"L", "N", "D", "I"}:
             self.mu_in = self.add_param(Constant(1), (self.num_inputs,), name="mu_in")
-        if self.config[2] in {"L", "N"}:
+        if self.config[2] in {"L", "N", "I"}:
             self.logsig_in = self.add_param(Constant(log_sigma_in_init), (self.num_inputs,), name="logsig_in")
-        if self.config[2] in {"L", "N", "D"}:
+        if self.config[2] in {"L", "N", "D", "R"}:
             self.mu_hid = self.add_param(Constant(1), (self.num_units,), name="mu_hid")
-        if self.config[2] in {"L", "N"}:
+        if self.config[2] in {"L", "N", "R"}:
             self.logsig_hid = self.add_param(Constant(log_sigma_hid_init), (self.num_units,), name="logsig_hid")
         
         if self.config[1] in {"L", "N", "D"}:
@@ -252,12 +264,12 @@ class BayesianLSTM(LSTM):
         self.hidden_clip = None
         self.thresh = 3.
             
-    def clip(self, mtx, to=8):
+    def clip_func(self, mtx, to=8):
         mtx = T.switch(T.le(mtx, -to), -to, mtx)
         mtx = T.switch(T.ge(mtx, to), to, mtx)
         return mtx
 
-    def generate_noise_and_clip(self, num_batch, deterministic = False, clip_test = False, clip_train = False):
+    def generate_noise_and_clip(self, num_batch, deterministic = False, clip = False):
         if not deterministic:
             if self.config[0] in {"L", "N"}:
                 self.input_w_noise = self._srng.normal((4, self.num_inputs, self.num_units), avg=0, std=1, dtype=floatX) * T.exp(self.logsig_w_in)
@@ -268,6 +280,12 @@ class BayesianLSTM(LSTM):
                 
             if self.config[2] in {"L", "N"}:
                 self.input_noise = self._srng.normal((num_batch, self.num_inputs), avg=0, std=1, dtype=floatX) * T.exp(self.logsig_in) + self.mu_in
+                self.hidden_noise = self._srng.normal((num_batch, self.num_units), avg=0, std=1, dtype=floatX) * T.exp(self.logsig_hid) + self.mu_hid
+            elif self.config[2] == "I":
+                self.input_noise = self._srng.normal((num_batch, self.num_inputs), avg=0, std=1, dtype=floatX) * T.exp(self.logsig_in) + self.mu_in
+                self.hidden_noise = T.ones(1, dtype=floatX)
+            elif self.config[2] == "R":
+                self.input_noise = T.ones(1, dtype=floatX)
                 self.hidden_noise = self._srng.normal((num_batch, self.num_units), avg=0, std=1, dtype=floatX) * T.exp(self.logsig_hid) + self.mu_hid
             elif self.config[2] == "D":
                 self.input_noise = self.mu_in
@@ -288,6 +306,12 @@ class BayesianLSTM(LSTM):
             if self.config[2] in {"L", "N", "D"}:
                 self.input_noise = self.mu_in
                 self.hidden_noise = self.mu_hid
+            elif self.config[2] == "I":
+                self.input_noise = self.mu_in
+                self.hidden_noise = T.ones(1, dtype=floatX)
+            elif self.config[2] == "R":
+                self.input_noise = T.ones(1, dtype=floatX)
+                self.hidden_noise = self.mu_hid
             else:
                 self.input_noise = T.ones(1, dtype=floatX)
                 self.hidden_noise = T.ones(1, dtype=floatX)
@@ -295,28 +319,35 @@ class BayesianLSTM(LSTM):
                 self.gates_noise = self.mu_gates
             else:
                 self.gates_noise = T.ones(4, dtype=floatX)
-        if clip_test or clip_train:
+        if clip:
             if self.config[0] == "L":
-                log_alpha_w_in = self.clip(2*self.logsig_w_in - T.log(T.concatenate((self.W_in_to_ingate[None,:,:], self.W_in_to_forgetgate[None,:,:], self.W_in_to_cell[None,:,:], self.W_in_to_outgate[None,:,:]), axis = 0) ** 2))
+                log_alpha_w_in = self.clip_func(2*self.logsig_w_in - T.log(T.concatenate((self.W_in_to_ingate[None,:,:], self.W_in_to_forgetgate[None,:,:], self.W_in_to_cell[None,:,:], self.W_in_to_outgate[None,:,:]), axis = 0) ** 2))
                 self.input_w_clip = T.le(log_alpha_w_in, self.thresh)
-                log_alpha_w_hid = self.clip(2*self.logsig_w_hid - T.log(T.concatenate((self.W_hid_to_ingate[None,:,:], self.W_hid_to_forgetgate[None,:,:], self.W_hid_to_cell[None,:,:], self.W_hid_to_outgate[None,:,:]), axis = 0) ** 2))
+                log_alpha_w_hid = self.clip_func(2*self.logsig_w_hid - T.log(T.concatenate((self.W_hid_to_ingate[None,:,:], self.W_hid_to_forgetgate[None,:,:], self.W_hid_to_cell[None,:,:], self.W_hid_to_outgate[None,:,:]), axis = 0) ** 2))
                 self.hidden_w_clip = T.le(log_alpha_w_hid, self.thresh)
             else:
                 self.input_w_clip = T.ones(4, dtype=floatX)
                 self.hidden_w_clip = T.ones(4, dtype=floatX)
                 
             if self.config[2] == "L":
-                log_alpha_in = self.clip(2*self.logsig_in-T.log(self.mu_in**2))
+                log_alpha_in = self.clip_func(2*self.logsig_in-T.log(self.mu_in**2))
                 self.input_clip = T.le(log_alpha_in, self.thresh)
-
-                log_alpha_hid = self.clip(2*self.logsig_hid-T.log(self.mu_hid**2))
+                log_alpha_hid = self.clip_func(2*self.logsig_hid-T.log(self.mu_hid**2))
+                self.hidden_clip = T.le(log_alpha_hid, self.thresh)
+            elif self.config[2] == "I":
+                log_alpha_in = self.clip_func(2*self.logsig_in-T.log(self.mu_in**2))
+                self.input_clip = T.le(log_alpha_in, self.thresh)
+                self.hidden_clip = T.ones(1, dtype=floatX)
+            elif self.config[2] == "R":
+                self.input_clip = T.ones(1, dtype=floatX)
+                log_alpha_hid = self.clip_func(2*self.logsig_hid-T.log(self.mu_hid**2))
                 self.hidden_clip = T.le(log_alpha_hid, self.thresh)
             else:
                 self.input_clip = T.ones(1, dtype=floatX)
                 self.hidden_clip = T.ones(1, dtype=floatX)
                 
             if self.config[1] == "L":
-                log_alpha_gates = self.clip(2*self.logsig_gates-T.log(self.mu_gates**2))
+                log_alpha_gates = self.clip_func(2*self.logsig_gates-T.log(self.mu_gates**2))
                 self.gates_clip = T.le(log_alpha_gates, self.thresh)
             else:
                 self.gates_clip = T.ones(4, dtype=floatX)
@@ -329,7 +360,7 @@ class BayesianLSTM(LSTM):
             self.gates_clip = T.ones(4, dtype=floatX)
         return
     
-    def input_preactivation(self, input, gate_type, deterministic = False, clip_test = False, clip_train = False):
+    def input_preactivation(self, input, gate_type, deterministic = False, clip = False):
         def get_matrix(gate_type):
             if gate_type == 'input':
                 return self.W_in_to_ingate, 0
@@ -343,7 +374,7 @@ class BayesianLSTM(LSTM):
         input = input * self.input_noise * self.input_clip
         return T.dot(input, (W + self.input_w_noise[idx])*self.input_w_clip[idx])
         
-    def hidden_preactivation(self, hidden, gate_type, deterministic = False, clip_test = False, clip_train = False):
+    def hidden_preactivation(self, hidden, gate_type, deterministic = False, clip = False):
         def get_matrix(gate_type):
             if gate_type == 'input':
                 return self.W_hid_to_ingate, 0
@@ -356,8 +387,7 @@ class BayesianLSTM(LSTM):
         W, idx = get_matrix(gate_type)
         return T.dot(hidden, (W + self.hidden_w_noise[idx])*self.hidden_w_clip[idx])
     
-    def get_output_for(self, inputs, deterministic=False, clip_train=False, clip_test=False, **kwargs):
-        clip = clip_train or clip_test
+    def get_output_for(self, inputs, deterministic=False, clip=False, **kwargs):
         input = inputs[0]
         mask = None
         if self.mask_incoming_index > 0:
@@ -366,7 +396,7 @@ class BayesianLSTM(LSTM):
         input = input.dimshuffle(1, 0, 2)
         num_batch = input.shape[1]
         seq_len = input.shape[0]
-        self.generate_noise_and_clip(num_batch, deterministic, clip_test, clip_train)
+        self.generate_noise_and_clip(num_batch, deterministic, clip)
         
         input_i = self.input_preactivation(input, 'input', **kwargs)
         input_f = self.input_preactivation(input, 'forget', **kwargs)
@@ -410,8 +440,11 @@ class BayesianLSTM(LSTM):
                     self.hidden_noise, self.hidden_clip,
                     self.gates_noise, self.gates_clip]
         
-        hid_init = T.dot(T.ones((num_batch, 1)), self.hid_init)
-        cell_init = T.dot(T.ones((num_batch, 1)), self.cell_init)
+        if self.hid_prop:
+            hid_init, cell_init = inputs[1][0,:,:], inputs[1][1,:,:]
+        else:
+            hid_init = T.dot(T.ones((num_batch, 1)), self.hid_init)
+            cell_init = T.dot(T.ones((num_batch, 1)), self.cell_init)
         
         cell_out, hid_out = theano.scan(
             fn=step_fun,
@@ -426,11 +459,14 @@ class BayesianLSTM(LSTM):
             hid_out = hid_out[-1]
         else:
             hid_out = hid_out.dimshuffle(1, 0, 2)
+            cell_out = cell_out.dimshuffle(1, 0, 2)
  
             if self.backwards:
                 hid_out = hid_out[:, ::-1]
- 
-        return hid_out
+        if self.hid_prop:
+            return T.concatenate([hid_out[np.newaxis,:,:,:],cell_out[np.newaxis,:,:,:]])
+        else:
+            return hid_out
             
     def eval_reg(self, train_size):
         # W
@@ -439,7 +475,7 @@ class BayesianLSTM(LSTM):
             KL_element_in = - self.logsig_w_in + 0.5 * (T.exp(2*self.logsig_w_in) + W_in**2) - 0.5
             KL = T.sum(KL_element_in)
         elif self.config[0] == "L":
-            log_alpha_w_in = self.clip(2*self.logsig_w_in - T.log(W_in**2))
+            log_alpha_w_in = self.clip_func(2*self.logsig_w_in - T.log(W_in**2))
             KL = alpha_regf(log_alpha_w_in).sum()
         else:
             KL = T.zeros(1, dtype=floatX).sum()
@@ -449,15 +485,21 @@ class BayesianLSTM(LSTM):
             KL_element_hid = - self.logsig_w_hid + 0.5 * (T.exp(2*self.logsig_w_hid) + W_hid**2) - 0.5
             KL += T.sum(KL_element_hid)
         elif self.config[0] == "L":
-            log_alpha_w_hid = self.clip(2*self.logsig_w_hid - T.log(W_hid**2))
+            log_alpha_w_hid = self.clip_func(2*self.logsig_w_hid - T.log(W_hid**2))
             KL += alpha_regf(log_alpha_w_hid).sum()
         
         # neurons
         if self.config[2] == "L":
-            log_alpha_hid = self.clip(2*self.logsig_hid - T.log(self.mu_hid**2))
+            log_alpha_hid = self.clip_func(2*self.logsig_hid - T.log(self.mu_hid**2))
             KL += alpha_regf(log_alpha_hid).sum()
-            log_alpha_in = self.clip(2*self.logsig_in - T.log(self.mu_in**2))
+            log_alpha_in = self.clip_func(2*self.logsig_in - T.log(self.mu_in**2))
             KL += alpha_regf(log_alpha_in).sum()
+        elif self.config[2] == "I":
+            log_alpha_in = self.clip_func(2*self.logsig_in - T.log(self.mu_in**2))
+            KL += alpha_regf(log_alpha_in).sum()
+        elif self.config[2] == "R":
+            log_alpha_hid = self.clip_func(2*self.logsig_hid - T.log(self.mu_hid**2))
+            KL += alpha_regf(log_alpha_hid).sum()
         elif self.config[2] == "N":
             KL_element = - self.logsig_hid + 0.5 * (T.exp(2*self.logsig_hid) + self.mu_hid**2) - 0.5
             KL += KL_element.sum()
@@ -466,7 +508,7 @@ class BayesianLSTM(LSTM):
         
         # gates
         if self.config[1] == "L":
-            log_alpha_gates = self.clip(2*self.logsig_gates - T.log(self.mu_gates**2))
+            log_alpha_gates = self.clip_func(2*self.logsig_gates - T.log(self.mu_gates**2))
             KL += alpha_regf(log_alpha_gates).sum()
         elif self.config[1] == "N":
             KL_element = - self.logsig_gates + 0.5 * (T.exp(2*self.logsig_gates) + self.mu_gates**2) - 0.5
@@ -493,10 +535,17 @@ class BayesianLSTM(LSTM):
             log_alpha_in = 2*self.logsig_in.get_value() - 2 * np.log(np.abs(self.mu_in.get_value()))
             mask_in = np.logical_and(log_alpha_in < self.thresh, mask_in)
             mask_hid_by_z = log_alpha_hid < self.thresh
+        elif self.config[2] == "I":
+            log_alpha_in = 2*self.logsig_in.get_value() - 2 * np.log(np.abs(self.mu_in.get_value()))
+            mask_in = np.logical_and(log_alpha_in < self.thresh, mask_in)
+        elif self.config[2] == "R":
+            log_alpha_hid = 2*self.logsig_hid.get_value() - 2 * np.log(np.abs(self.mu_hid.get_value()))
+            mask_hid_by_z = log_alpha_hid < self.thresh
         # gates
         if self.config[1] == "L":
             log_alpha_gates = 2*self.logsig_gates.get_value() - 2 * np.log(np.abs(self.mu_gates.get_value()))
-            mask_gates = log_alpha_gates < self.thresh
+            mask = np.concatenate([mask_w_in, mask_w_hid], axis=1)
+            mask_gates = np.logical_and(log_alpha_gates < self.thresh, mask.any(axis=1))
         else:
             mask = np.concatenate([mask_w_in, mask_w_hid], axis=1)
             mask_gates = mask.any(axis=1)
@@ -507,48 +556,3 @@ class BayesianLSTM(LSTM):
                 "z_input": mask_in,\
                 "z_hidden_by_w": mask_hid_by_w,
                 "z_hidden": mask_hid_by_z}
-    
-    def get_reg(self):
-        # W
-        if self.config[0] in {"L", "N"}:
-            W_in = np.concatenate((self.W_in_to_ingate.get_value()[None,:,:], self.W_in_to_forgetgate.get_value()[None,:,:], self.W_in_to_cell.get_value()[None,:,:], self.W_in_to_outgate.get_value()[None,:,:]), axis = 0)
-            W_hid = np.concatenate((self.W_hid_to_ingate.get_value()[None,:,:], self.W_hid_to_forgetgate.get_value()[None,:,:], self.W_hid_to_cell.get_value()[None,:,:], self.W_hid_to_outgate.get_value()[None,:,:]), axis = 0)
-        if self.config[0] == "L":
-            KL_element_in = - self.logsig_w_in.get_value() + 0.5 * (np.exp(2*self.logsig_w_in.get_value()) + W_in**2) - 0.5
-            KL_w = np.sum(KL_element_in)
-            KL_element_hid = - self.logsig_w_hid.get_value() + 0.5 * (np.exp(2*self.logsig_w_hid.get_value()) + W_hid**2) - 0.5
-            KL_w += np.sum(KL_element_hid)
-        elif self.config[0] == "N":
-            log_alpha_w_in = 2*self.logsig_w_in.get_value() - np.log(W_in**2)
-            KL_w = alpha_regf_np(log_alpha_w_in).sum()
-            log_alpha_w_hid = 2*self.logsig_w_hid.get_value() - np.log(W_hid**2)
-            KL_w += alpha_regf_np(log_alpha_w_hid).sum()
-        else:
-            KL_w = 0
-        
-        # gates
-        if self.config[1] == "L":
-            KL_element = - self.logsig_gates.get_value() + 0.5 * (np.exp(2*self.logsig_gates.get_value()) + self.mu_gates.get_value()**2) - 0.5
-            KL_gates = KL_element.sum()
-        elif self.config[1] == "N":
-            log_alpha_gates = 2*self.logsig_gates.get_value() - np.log(self.mu_gates.get_value()**2)
-            KL_gates = alpha_regf_np(log_alpha_gates).sum()
-        else:
-            KL_gates = 0
-        
-        # neurons
-        if self.config[2] == "N":
-            log_alpha_hid = 2*self.logsig_hid.get_value() - 2*np.log(np.abs(self.mu_hid.get_value()))
-            KL_z = alpha_regf_np(log_alpha_hid).sum()
-            log_alpha_in = 2*self.logsig_in.get_value() - 2*np.log(np.abs(self.mu_in.get_value()))
-            KL_z += alpha_regf_np(log_alpha_in).sum()
-        elif self.config[2] == "L":
-            KL_element = - self.logsig_hid.get_value() + 0.5 * (np.exp(2*self.logsig_hid.get_value()) + self.mu_hid.get_value()**2) - 0.5
-            KL_z = KL_element.sum()
-            KL_element = - self.logsig_in.get_value() + 0.5 * (np.exp(2*self.logsig_in.get_value()) + self.mu_in.get_value()**2) - 0.5
-            KL_z += KL_element.sum()
-        else:
-            KL_z = 0
-
-        return "%.4f, %.4f, %.4f" % (KL_w, KL_gates, KL_z)
-    

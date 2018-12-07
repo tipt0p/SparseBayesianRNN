@@ -35,36 +35,38 @@ class Dense(Layer):
     def get_output_for(self, input, **kwargs):
         return self.nonlinearity(self.pre_activation(input, **kwargs) + self.b)
     
+    def get_ard(self):
+        return {"w": np.ones(self.W.get_value().shape)}
+    
 class BayesianDense(Dense):
-    def __init__(self, incoming, num_units, log_sigma2_init = Constant(-3.), W=GlorotUniform(),
-                 b=Constant(0.), nonlinearity=identity, \
-                 train_sigma=True, **kwargs):
+    def __init__(self, incoming, num_units, log_sigma_init = Constant(-3.), W=GlorotUniform(),
+                 b=Constant(0.), nonlinearity=identity, **kwargs):
         super(BayesianDense, self).__init__(incoming, num_units, W, b, nonlinearity, **kwargs)
-        self.log_sigma2 = self.add_param(log_sigma2_init, (self.num_inputs, self.num_units), name="log_sigma2")
+        self.log_sigma = self.add_param(log_sigma_init, (self.num_inputs, self.num_units), name="log_sigma")
         self.reg = True
         self.name = 'DenseSparseVDO'
         self.thresh = 3.
 
-    def clip(self, mtx, to=8):
+    def clip_func(self, mtx, to=8):
         mtx = T.switch(T.le(mtx, -to), -to, mtx)
         mtx = T.switch(T.ge(mtx, to), to, mtx)
         return mtx
     
-    def pre_activation(self, input, deterministic = False, clip_test = False, clip_train = False):
+    def pre_activation(self, input, deterministic = False, clip = False):
         if deterministic:
-            if clip_test:
-                log_alpha = self.clip(self.log_sigma2 - T.log(self.W ** 2))
+            if clip:
+                log_alpha = self.clip_func(2*self.log_sigma - T.log(self.W ** 2))
                 clip_mask = T.ge(log_alpha, self.thresh)
                 return T.dot(input, T.switch(clip_mask, 0, self.W))
             else:
                 return T.dot(input, self.W)
         W = self.W
-        sigma2 = T.exp(self.log_sigma2)
-        if clip_train:
-            log_alpha = self.clip(self.log_sigma2 - T.log(self.W ** 2))
+        sigma2 = T.exp(2*self.log_sigma)
+        if clip:
+            log_alpha = self.clip_func(2*self.log_sigma - T.log(self.W ** 2))
             clip_mask = T.ge(log_alpha, self.thresh)
             W = T.switch(clip_mask, 0, self.W)  
-            sigma2 = T.switch(clip_mask, 0, T.exp(self.log_sigma2))
+            sigma2 = T.switch(clip_mask, 0, T.exp(2*self.log_sigma))
         mu = T.dot(input, W)
         si = T.sqrt(T.dot(input * input, sigma2)+1e-8)
         if input.ndim == 2:
@@ -73,14 +75,59 @@ class BayesianDense(Dense):
             return mu + self._srng.normal((mu.shape[0],1,mu.shape[2]), avg=0, std=1, dtype=floatX) * si
     
     def eval_reg(self, train_size):
-        log_alpha = self.clip(self.log_sigma2 - T.log(self.W ** 2))
+        log_alpha = self.clip_func(2*self.log_sigma - T.log(self.W ** 2))
         return alpha_regf(log_alpha).sum() / train_size
     
     def get_ard(self):
-        log_alpha = self.log_sigma2.get_value() - 2 * np.log(np.abs(self.W.get_value()))
+        log_alpha = 2*self.log_sigma.get_value() - 2 * np.log(np.abs(self.W.get_value()))
         return {"w": (log_alpha < self.thresh)}
     
-    def get_reg(self):
-        log_alpha = self.log_sigma2.get_value() - 2 * np.log(np.abs(self.W.get_value()))
-        return '%.1f, %.1f' % (log_alpha.min(), log_alpha.max())
-  
+class BayesianDense_noLRT(Dense):
+    def __init__(self, incoming, num_units, log_sigma_init = Constant(-3.), W=GlorotUniform(),
+                 b=Constant(0.), nonlinearity=identity, **kwargs):
+        super(BayesianDense_noLRT, self).__init__(incoming, num_units, W, b, nonlinearity, **kwargs)
+        self.log_sigma = self.add_param(log_sigma_init, (self.num_inputs, self.num_units), name="log_sigma")
+        self.reg = True
+        self.name = 'DenseSparseVDO'
+        self.thresh = 3.
+
+    def clip_func(self, mtx, to=8):
+        mtx = T.switch(T.le(mtx, -to), -to, mtx)
+        mtx = T.switch(T.ge(mtx, to), to, mtx)
+        return mtx
+    
+    def pre_activation(self, input, deterministic = False, clip = False):
+        if deterministic:
+            if clip:
+                log_alpha = self.clip_func(2*self.log_sigma - T.log(self.W ** 2))
+                clip_mask = T.ge(log_alpha, self.thresh)
+                return T.dot(input, T.switch(clip_mask, 0, self.W))
+            else:
+                return T.dot(input, self.W)
+        if input.ndim == 2:
+            W = self.W
+            sigma2 = T.exp(2*self.log_sigma)
+            if clip_train:
+                log_alpha = self.clip(2*self.log_sigma - T.log(self.W ** 2))
+                clip_mask = T.ge(log_alpha, self.thresh)
+                W = T.switch(clip_mask, 0, self.W)  
+                sigma2 = T.switch(clip_mask, 0, T.exp(2*self.log_sigma))
+            mu = T.dot(input, W)
+            si = T.sqrt(T.dot(input * input, sigma2)+1e-8)
+            return mu + self._srng.normal(mu.shape, avg=0, std=1, dtype=floatX) * si
+        else:
+            W = self.W
+            W = W + self._srng.normal(W.shape, avg = 0.0, std = 1.0, dtype=floatX) * T.exp(self.log_sigma)
+            if clip:
+                log_alpha = self.clip(2*self.log_sigma - T.log(self.W ** 2))
+                clip_mask = T.ge(log_alpha, self.thresh)
+                W = T.switch(clip_mask, 0, W)  
+            return T.dot(input, W)
+    
+    def eval_reg(self, train_size):
+        log_alpha = self.clip_func(2*self.log_sigma - T.log(self.W ** 2))
+        return alpha_regf(log_alpha).sum() / train_size
+    
+    def get_ard(self):
+        log_alpha = 2*self.log_sigma.get_value() - 2 * np.log(np.abs(self.W.get_value()))
+        return {"w": (log_alpha < self.thresh)}

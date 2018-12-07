@@ -1,0 +1,1056 @@
+10000
+Training ...
+Epoch 1 took 72.939s 	 loss = -2.65804640302, 	 grad norm = 2.28914737701,	0.341333965616
+Train (clip): 1039.2645
+Val (clip): 594.4175
+Test (clip): 576.9752
+Testing took 1.343s
+Compression per layers:
+LSTM: (z_x: 2477/10000) (z_h: 256/256) (gates: 987/1024) (w_x: 41084/10240000) (w_h: 78161/262144) Dense: (w: 534589/2560000) Overall compression: 19.9777680573
+Epoch 2 took 74.141s 	 loss = -3.11551313486, 	 grad norm = 0.665787041187,	0.26844431485
+Train (clip): 610.0709
+Val (clip): 389.6044
+Test (clip): 377.3772
+Testing took 1.358s
+Compression per layers:
+LSTM: (z_x: 6227/10000) (z_h: 256/256) (gates: 994/1024) (w_x: 68072/10240000) (w_h: 81109/262144) Dense: (w: 464236/2560000) Overall compression: 21.2940691243
+Epoch 3 took 73.920s 	 loss = -3.38645346021, 	 grad norm = 0.705647885799,	0.280318771752
+Train (clip): 477.2242
+Val (clip): 317.5542
+Test (clip): 306.3486
+Testing took 1.363s
+Compression per layers:
+LSTM: (z_x: 7333/10000) (z_h: 256/256) (gates: 983/1024) (w_x: 77394/10240000) (w_h: 67683/262144) Dense: (w: 409457/2560000) Overall compression: 23.5551724511
+Epoch 4 took 74.672s 	 loss = -3.53595225096, 	 grad norm = 0.631869733334,	0.286081470621
+Train (clip): 409.7684
+Val (clip): 281.2563
+Test (clip): 270.5343
+Testing took 1.308s
+Compression per layers:
+LSTM: (z_x: 7871/10000) (z_h: 256/256) (gates: 983/1024) (w_x: 84504/10240000) (w_h: 62139/262144) Dense: (w: 366501/2560000) Overall compression: 25.455123708
+Epoch 5 took 75.497s 	 loss = -3.6421396582, 	 grad norm = 0.599454581738,	0.275061789011
+Train (clip): 367.8428
+Val (clip): 257.7606
+Test (clip): 248.0348
+Testing took 1.364s
+Compression per layers:
+LSTM: (z_x: 8244/10000) (z_h: 256/256) (gates: 946/1024) (w_x: 87582/10240000) (w_h: 51088/262144) Dense: (w: 334913/2560000) Overall compression: 27.581530587
+Epoch 6 took 75.122s 	 loss = -3.72378603613, 	 grad norm = 0.559496939182,	0.269958795176
+Train (clip): 341.4782
+Val (clip): 240.5202
+Test (clip): 231.2361
+Testing took 1.375s
+Compression per layers:
+LSTM: (z_x: 8508/10000) (z_h: 256/256) (gates: 939/1024) (w_x: 93510/10240000) (w_h: 43360/262144) Dense: (w: 324610/2560000) Overall compression: 28.304897287
+Epoch 7 took 75.846s 	 loss = -3.79153909951, 	 grad norm = 0.531221151352,	0.261355222259
+Train (clip): 321.9522
+Val (clip): 227.5103
+Test (clip): 219.0627
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 8718/10000) (z_h: 256/256) (gates: 898/1024) (w_x: 98220/10240000) (w_h: 38561/262144) Dense: (w: 318812/2560000) Overall compression: 28.6706424374
+Epoch 8 took 75.554s 	 loss = -3.84756691523, 	 grad norm = 0.515099108219,	0.257566511272
+Train (clip): 307.1960
+Val (clip): 217.7839
+Test (clip): 209.3312
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 8866/10000) (z_h: 256/256) (gates: 861/1024) (w_x: 101050/10240000) (w_h: 36238/262144) Dense: (w: 312274/2560000) Overall compression: 29.0552671267
+Epoch 9 took 74.901s 	 loss = -3.89541701099, 	 grad norm = 0.524676144123,	0.254559697983
+Train (clip): 296.0709
+Val (clip): 207.1560
+Test (clip): 199.4608
+Testing took 1.464s
+Compression per layers:
+LSTM: (z_x: 8997/10000) (z_h: 256/256) (gates: 830/1024) (w_x: 105198/10240000) (w_h: 33237/262144) Dense: (w: 309102/2560000) Overall compression: 29.1867353984
+Epoch 10 took 75.967s 	 loss = -3.9367522984, 	 grad norm = 0.449282199144,	0.254504265448
+Train (clip): 285.8645
+Val (clip): 200.0953
+Test (clip): 192.4941
+Testing took 1.444s
+Compression per layers:
+LSTM: (z_x: 9112/10000) (z_h: 256/256) (gates: 801/1024) (w_x: 108514/10240000) (w_h: 32430/262144) Dense: (w: 304282/2560000) Overall compression: 29.3382327178
+Epoch 11 took 75.150s 	 loss = -3.97410403461, 	 grad norm = 0.477454423904,	0.2529850621
+Train (clip): 277.0629
+Val (clip): 192.7892
+Test (clip): 185.8310
+Testing took 1.414s
+Compression per layers:
+LSTM: (z_x: 9188/10000) (z_h: 256/256) (gates: 766/1024) (w_x: 111054/10240000) (w_h: 31131/262144) Dense: (w: 304710/2560000) Overall compression: 29.2286644514
+Epoch 12 took 75.184s 	 loss = -4.0082235835, 	 grad norm = 0.411007702351,	0.251924958287
+Train (clip): 267.7878
+Val (clip): 187.6483
+Test (clip): 180.7350
+Testing took 1.297s
+Compression per layers:
+LSTM: (z_x: 9256/10000) (z_h: 256/256) (gates: 712/1024) (w_x: 113554/10240000) (w_h: 29595/262144) Dense: (w: 302279/2560000) Overall compression: 29.3249279345
+Epoch 13 took 75.586s 	 loss = -4.03816497971, 	 grad norm = 0.423818707466,	0.25606585373
+Train (clip): 262.1970
+Val (clip): 184.0808
+Test (clip): 177.0730
+Testing took 1.450s
+Compression per layers:
+LSTM: (z_x: 9344/10000) (z_h: 256/256) (gates: 666/1024) (w_x: 116512/10240000) (w_h: 29024/262144) Dense: (w: 300900/2560000) Overall compression: 29.258715695
+Epoch 14 took 75.704s 	 loss = -4.06634728413, 	 grad norm = 0.416731715202,	0.252612130434
+Train (clip): 253.0666
+Val (clip): 178.1080
+Test (clip): 171.8983
+Testing took 1.355s
+Compression per layers:
+LSTM: (z_x: 9400/10000) (z_h: 256/256) (gates: 638/1024) (w_x: 119703/10240000) (w_h: 27498/262144) Dense: (w: 300320/2560000) Overall compression: 29.1877788975
+Epoch 15 took 74.544s 	 loss = -4.09253939886, 	 grad norm = 0.38653409481,	0.256926295502
+Train (clip): 247.8857
+Val (clip): 173.6622
+Test (clip): 167.4728
+Testing took 1.362s
+Compression per layers:
+LSTM: (z_x: 9437/10000) (z_h: 256/256) (gates: 615/1024) (w_x: 122450/10240000) (w_h: 26916/262144) Dense: (w: 299506/2560000) Overall compression: 29.0999304924
+Epoch 16 took 74.965s 	 loss = -4.1164570745, 	 grad norm = 0.417925149202,	0.255834777671
+Train (clip): 242.4859
+Val (clip): 170.8741
+Test (clip): 164.5002
+Testing took 1.359s
+Compression per layers:
+LSTM: (z_x: 9473/10000) (z_h: 256/256) (gates: 571/1024) (w_x: 124476/10240000) (w_h: 26785/262144) Dense: (w: 298478/2560000) Overall compression: 29.0438320893
+Epoch 17 took 74.603s 	 loss = -4.13786551519, 	 grad norm = 0.43371617794,	0.259981972105
+Train (clip): 238.5862
+Val (clip): 167.6332
+Test (clip): 161.3164
+Testing took 1.415s
+Compression per layers:
+LSTM: (z_x: 9506/10000) (z_h: 256/256) (gates: 583/1024) (w_x: 126475/10240000) (w_h: 26744/262144) Dense: (w: 297211/2560000) Overall compression: 28.9992762471
+Epoch 18 took 74.628s 	 loss = -4.15952349949, 	 grad norm = 0.385384052992,	0.256787827665
+Train (clip): 233.0516
+Val (clip): 163.9742
+Test (clip): 157.8052
+Testing took 1.428s
+Compression per layers:
+LSTM: (z_x: 9543/10000) (z_h: 256/256) (gates: 532/1024) (w_x: 128681/10240000) (w_h: 25832/262144) Dense: (w: 296715/2560000) Overall compression: 28.9479908162
+Epoch 19 took 74.461s 	 loss = -4.17815830971, 	 grad norm = 0.382567197084,	0.257570144983
+Train (clip): 229.3136
+Val (clip): 161.8610
+Test (clip): 155.7048
+Testing took 1.424s
+Compression per layers:
+LSTM: (z_x: 9573/10000) (z_h: 255/256) (gates: 526/1024) (w_x: 131531/10240000) (w_h: 26715/262144) Dense: (w: 298167/2560000) Overall compression: 28.6191322333
+Epoch 20 took 74.996s 	 loss = -4.19578946514, 	 grad norm = 0.511506736279,	0.26244126368
+Train (clip): 224.8111
+Val (clip): 159.6256
+Test (clip): 153.3884
+Testing took 1.440s
+Compression per layers:
+LSTM: (z_x: 9599/10000) (z_h: 256/256) (gates: 518/1024) (w_x: 133557/10240000) (w_h: 26397/262144) Dense: (w: 296597/2560000) Overall compression: 28.6104816329
+Epoch 21 took 75.116s 	 loss = -4.21284791983, 	 grad norm = 0.441608995199,	0.262790950199
+Train (clip): 222.0785
+Val (clip): 157.7686
+Test (clip): 151.5517
+Testing took 1.321s
+Compression per layers:
+LSTM: (z_x: 9617/10000) (z_h: 255/256) (gates: 502/1024) (w_x: 134819/10240000) (w_h: 26199/262144) Dense: (w: 296003/2560000) Overall compression: 28.5810586384
+Epoch 22 took 74.316s 	 loss = -4.22886135681, 	 grad norm = 0.450234204531,	0.262759269882
+Train (clip): 218.6588
+Val (clip): 155.1983
+Test (clip): 148.9313
+Testing took 1.430s
+Compression per layers:
+LSTM: (z_x: 9648/10000) (z_h: 253/256) (gates: 497/1024) (w_x: 137358/10240000) (w_h: 25660/262144) Dense: (w: 296626/2560000) Overall compression: 28.4179582459
+Epoch 23 took 74.816s 	 loss = -4.24430123447, 	 grad norm = 0.409981906414,	0.263035299063
+Train (clip): 214.6677
+Val (clip): 153.1877
+Test (clip): 146.9599
+Testing took 1.447s
+Compression per layers:
+LSTM: (z_x: 9653/10000) (z_h: 256/256) (gates: 480/1024) (w_x: 138240/10240000) (w_h: 25527/262144) Dense: (w: 295407/2560000) Overall compression: 28.4470462178
+Epoch 24 took 75.462s 	 loss = -4.25789291751, 	 grad norm = 0.394948452711,	0.263956053016
+Train (clip): 211.6549
+Val (clip): 151.9803
+Test (clip): 145.4964
+Testing took 1.265s
+Compression per layers:
+LSTM: (z_x: 9689/10000) (z_h: 255/256) (gates: 458/1024) (w_x: 140423/10240000) (w_h: 25013/262144) Dense: (w: 295453/2560000) Overall compression: 28.3411927818
+Epoch 25 took 73.975s 	 loss = -4.27227106356, 	 grad norm = 0.439262956381,	0.266393761983
+Train (clip): 209.4659
+Val (clip): 150.2740
+Test (clip): 143.7892
+Testing took 1.354s
+Compression per layers:
+LSTM: (z_x: 9697/10000) (z_h: 254/256) (gates: 447/1024) (w_x: 142044/10240000) (w_h: 25101/262144) Dense: (w: 294964/2560000) Overall compression: 28.2663700555
+Epoch 26 took 75.157s 	 loss = -4.28575079198, 	 grad norm = 0.397671043873,	0.265323865862
+Train (clip): 207.3622
+Val (clip): 149.3712
+Test (clip): 142.7526
+Testing took 1.441s
+Compression per layers:
+LSTM: (z_x: 9720/10000) (z_h: 255/256) (gates: 444/1024) (w_x: 143698/10240000) (w_h: 25229/262144) Dense: (w: 294805/2560000) Overall compression: 28.1674415395
+Epoch 27 took 74.482s 	 loss = -4.29755268186, 	 grad norm = 0.416389107704,	0.266501166375
+Train (clip): 204.4989
+Val (clip): 147.3424
+Test (clip): 140.9754
+Testing took 1.439s
+Compression per layers:
+LSTM: (z_x: 9747/10000) (z_h: 256/256) (gates: 448/1024) (w_x: 145788/10240000) (w_h: 25087/262144) Dense: (w: 294284/2560000) Overall compression: 28.0810303574
+Epoch 28 took 74.355s 	 loss = -4.30980462511, 	 grad norm = 0.402554214001,	0.266704674442
+Train (clip): 202.6115
+Val (clip): 146.2132
+Test (clip): 139.6702
+Testing took 1.424s
+Compression per layers:
+LSTM: (z_x: 9738/10000) (z_h: 255/256) (gates: 436/1024) (w_x: 147117/10240000) (w_h: 25140/262144) Dense: (w: 294009/2560000) Overall compression: 28.0143609013
+Epoch 29 took 75.636s 	 loss = -4.32093808277, 	 grad norm = 0.453909218311,	0.268227251449
+Train (clip): 200.7009
+Val (clip): 144.9727
+Test (clip): 138.4880
+Testing took 1.323s
+Compression per layers:
+LSTM: (z_x: 9764/10000) (z_h: 246/256) (gates: 405/1024) (w_x: 148955/10240000) (w_h: 24662/262144) Dense: (w: 293952/2560000) Overall compression: 27.9362917559
+Epoch 30 took 74.871s 	 loss = -4.33083958699, 	 grad norm = 0.384856194258,	0.26981054645
+Train (clip): 198.9465
+Val (clip): 143.3376
+Test (clip): 136.9502
+Testing took 1.431s
+Compression per layers:
+LSTM: (z_x: 9770/10000) (z_h: 254/256) (gates: 406/1024) (w_x: 149899/10240000) (w_h: 24644/262144) Dense: (w: 292928/2560000) Overall compression: 27.942148283
+Epoch 31 took 75.014s 	 loss = -4.34149391197, 	 grad norm = 0.41195461154,	0.268446352144
+Train (clip): 196.7284
+Val (clip): 141.8813
+Test (clip): 135.6082
+Testing took 1.389s
+Compression per layers:
+LSTM: (z_x: 9772/10000) (z_h: 250/256) (gates: 399/1024) (w_x: 151493/10240000) (w_h: 24713/262144) Dense: (w: 292695/2560000) Overall compression: 27.8569335531
+Epoch 32 took 74.237s 	 loss = -4.35218268607, 	 grad norm = 0.407063692808,	0.271490819591
+Train (clip): 195.0037
+Val (clip): 142.3610
+Test (clip): 135.5758
+Testing took 1.346s
+Compression per layers:
+LSTM: (z_x: 9787/10000) (z_h: 247/256) (gates: 392/1024) (w_x: 153311/10240000) (w_h: 24499/262144) Dense: (w: 292422/2560000) Overall compression: 27.7780840096
+Epoch 33 took 74.237s 	 loss = -4.3619915921, 	 grad norm = 0.393317222595,	0.270052326515
+Train (clip): 192.7011
+Val (clip): 140.2301
+Test (clip): 133.7712
+Testing took 1.314s
+Compression per layers:
+LSTM: (z_x: 9801/10000) (z_h: 248/256) (gates: 387/1024) (w_x: 154942/10240000) (w_h: 24772/262144) Dense: (w: 292121/2560000) Overall compression: 27.6837114669
+Epoch 34 took 76.095s 	 loss = -4.36980003295, 	 grad norm = 0.440119236708,	0.27125178633
+Train (clip): 190.5297
+Val (clip): 139.1841
+Test (clip): 132.6668
+Testing took 1.331s
+Compression per layers:
+LSTM: (z_x: 9810/10000) (z_h: 244/256) (gates: 382/1024) (w_x: 155994/10240000) (w_h: 24548/262144) Dense: (w: 291691/2560000) Overall compression: 27.660379516
+Epoch 35 took 74.477s 	 loss = -4.37962025193, 	 grad norm = 0.561059474945,	0.274721145648
+Train (clip): 188.6368
+Val (clip): 138.2555
+Test (clip): 131.7659
+Testing took 1.439s
+Compression per layers:
+LSTM: (z_x: 9817/10000) (z_h: 245/256) (gates: 376/1024) (w_x: 157293/10240000) (w_h: 24527/262144) Dense: (w: 291673/2560000) Overall compression: 27.5867731941
+Epoch 36 took 75.943s 	 loss = -4.38696056925, 	 grad norm = 0.41323274374,	0.272595496476
+Train (clip): 187.0491
+Val (clip): 138.2220
+Test (clip): 131.5343
+Testing took 1.303s
+Compression per layers:
+LSTM: (z_x: 9831/10000) (z_h: 239/256) (gates: 370/1024) (w_x: 158146/10240000) (w_h: 24415/262144) Dense: (w: 290625/2560000) Overall compression: 27.6046713132
+Epoch 37 took 74.912s 	 loss = -4.39669680725, 	 grad norm = 0.405262202024,	0.270576168704
+Train (clip): 184.8940
+Val (clip): 136.8701
+Test (clip): 130.3135
+Testing took 1.325s
+Compression per layers:
+LSTM: (z_x: 9831/10000) (z_h: 239/256) (gates: 355/1024) (w_x: 160822/10240000) (w_h: 24386/262144) Dense: (w: 291391/2560000) Overall compression: 27.4069899433
+Epoch 38 took 75.111s 	 loss = -4.40438881572, 	 grad norm = 0.461545497179,	0.272369770921
+Train (clip): 183.9390
+Val (clip): 136.3784
+Test (clip): 129.7468
+Testing took 1.400s
+Compression per layers:
+LSTM: (z_x: 9842/10000) (z_h: 246/256) (gates: 384/1024) (w_x: 160580/10240000) (w_h: 24979/262144) Dense: (w: 291386/2560000) Overall compression: 27.3871075281
+Epoch 39 took 74.431s 	 loss = -4.41213344992, 	 grad norm = 0.446943134069,	0.273951499972
+Train (clip): 182.1234
+Val (clip): 135.2004
+Test (clip): 128.7023
+Testing took 1.346s
+Compression per layers:
+LSTM: (z_x: 9854/10000) (z_h: 239/256) (gates: 368/1024) (w_x: 162821/10240000) (w_h: 24624/262144) Dense: (w: 290582/2560000) Overall compression: 27.3251176189
+Epoch 40 took 74.308s 	 loss = -4.4197046291, 	 grad norm = 0.394363999367,	0.27088489949
+Train (clip): 180.5598
+Val (clip): 134.1733
+Test (clip): 127.5954
+Testing took 1.387s
+Compression per layers:
+LSTM: (z_x: 9859/10000) (z_h: 245/256) (gates: 365/1024) (w_x: 163265/10240000) (w_h: 24730/262144) Dense: (w: 290260/2560000) Overall compression: 27.3120908302
+Epoch 41 took 73.788s 	 loss = -4.42728664798, 	 grad norm = 0.399619728327,	0.272522514143
+Train (clip): 179.5552
+Val (clip): 134.5079
+Test (clip): 127.7813
+Testing took 1.452s
+Compression per layers:
+LSTM: (z_x: 9862/10000) (z_h: 235/256) (gates: 362/1024) (w_x: 164373/10240000) (w_h: 24664/262144) Dense: (w: 290094/2560000) Overall compression: 27.2621558613
+Epoch 42 took 74.664s 	 loss = -4.43427853979, 	 grad norm = 0.417521864176,	0.272929346113
+Train (clip): 177.3506
+Val (clip): 133.0826
+Test (clip): 126.4015
+Testing took 1.432s
+Compression per layers:
+LSTM: (z_x: 9857/10000) (z_h: 239/256) (gates: 352/1024) (w_x: 165770/10240000) (w_h: 24520/262144) Dense: (w: 290347/2560000) Overall compression: 27.176734209
+Epoch 43 took 73.991s 	 loss = -4.44157911104, 	 grad norm = 0.414476335049,	0.271605461261
+Train (clip): 176.4078
+Val (clip): 132.4645
+Test (clip): 125.8531
+Testing took 1.445s
+Compression per layers:
+LSTM: (z_x: 9869/10000) (z_h: 237/256) (gates: 346/1024) (w_x: 166735/10240000) (w_h: 24577/262144) Dense: (w: 289734/2560000) Overall compression: 27.1536277196
+Epoch 44 took 74.892s 	 loss = -4.44861363457, 	 grad norm = 0.425738930702,	0.274531731081
+Train (clip): 174.6793
+Val (clip): 131.9543
+Test (clip): 125.2783
+Testing took 1.298s
+Compression per layers:
+LSTM: (z_x: 9873/10000) (z_h: 234/256) (gates: 340/1024) (w_x: 167958/10240000) (w_h: 24654/262144) Dense: (w: 289881/2560000) Overall compression: 27.0721937935
+Epoch 45 took 74.539s 	 loss = -4.45547104238, 	 grad norm = 0.568967401981,	0.272609339152
+Train (clip): 174.1923
+Val (clip): 131.6773
+Test (clip): 125.1014
+Testing took 1.299s
+Compression per layers:
+LSTM: (z_x: 9884/10000) (z_h: 237/256) (gates: 345/1024) (w_x: 169083/10240000) (w_h: 24921/262144) Dense: (w: 289788/2560000) Overall compression: 26.999503919
+Epoch 46 took 74.466s 	 loss = -4.46091733812, 	 grad norm = 0.397696971893,	0.272255688565
+Train (clip): 172.0937
+Val (clip): 131.0411
+Test (clip): 124.2945
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 9883/10000) (z_h: 230/256) (gates: 336/1024) (w_x: 170933/10240000) (w_h: 24569/262144) Dense: (w: 290295/2560000) Overall compression: 26.8880705315
+Epoch 47 took 74.503s 	 loss = -4.46765241946, 	 grad norm = 0.400313436985,	0.271980155681
+Train (clip): 170.9489
+Val (clip): 130.2401
+Test (clip): 123.4582
+Testing took 1.408s
+Compression per layers:
+LSTM: (z_x: 9888/10000) (z_h: 236/256) (gates: 335/1024) (w_x: 171661/10240000) (w_h: 24789/262144) Dense: (w: 289960/2560000) Overall compression: 26.8541847413
+Epoch 48 took 74.936s 	 loss = -4.47387279714, 	 grad norm = 0.721208035946,	0.272422397173
+Train (clip): 170.0690
+Val (clip): 129.6733
+Test (clip): 122.9963
+Testing took 1.398s
+Compression per layers:
+LSTM: (z_x: 9888/10000) (z_h: 232/256) (gates: 334/1024) (w_x: 172825/10240000) (w_h: 24791/262144) Dense: (w: 289859/2560000) Overall compression: 26.7955156675
+Epoch 49 took 75.102s 	 loss = -4.47981125182, 	 grad norm = 0.445638865232,	0.272773722622
+Train (clip): 168.6963
+Val (clip): 129.4489
+Test (clip): 122.6876
+Testing took 1.450s
+Compression per layers:
+LSTM: (z_x: 9890/10000) (z_h: 224/256) (gates: 334/1024) (w_x: 173686/10240000) (w_h: 24880/262144) Dense: (w: 289999/2560000) Overall compression: 26.7357342421
+Epoch 50 took 74.878s 	 loss = -4.48535926627, 	 grad norm = 0.412709116936,	0.27285871933
+Train (clip): 167.8334
+Val (clip): 129.0513
+Test (clip): 122.2507
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 9894/10000) (z_h: 225/256) (gates: 333/1024) (w_x: 174792/10240000) (w_h: 24813/262144) Dense: (w: 289872/2560000) Overall compression: 26.6859198696
+Save model: Results/weights_LCCL_epoch_50.npy
+Epoch 51 took 75.874s 	 loss = -4.49079953342, 	 grad norm = 0.474041521549,	0.273560919245
+Train (clip): 166.6405
+Val (clip): 128.4146
+Test (clip): 121.6884
+Testing took 1.424s
+Compression per layers:
+LSTM: (z_x: 9897/10000) (z_h: 214/256) (gates: 318/1024) (w_x: 175504/10240000) (w_h: 24495/262144) Dense: (w: 289372/2560000) Overall compression: 26.691700162
+Epoch 52 took 74.602s 	 loss = -4.49687813895, 	 grad norm = 0.661357283592,	0.273598658877
+Train (clip): 165.1056
+Val (clip): 127.9503
+Test (clip): 121.1471
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 9905/10000) (z_h: 222/256) (gates: 327/1024) (w_x: 176449/10240000) (w_h: 24866/262144) Dense: (w: 289796/2560000) Overall compression: 26.5971318093
+Epoch 53 took 74.346s 	 loss = -4.50304870358, 	 grad norm = 0.393164098263,	0.270448840221
+Train (clip): 164.3618
+Val (clip): 127.5039
+Test (clip): 120.7784
+Testing took 1.321s
+Compression per layers:
+LSTM: (z_x: 9904/10000) (z_h: 223/256) (gates: 327/1024) (w_x: 177921/10240000) (w_h: 24598/262144) Dense: (w: 289193/2560000) Overall compression: 26.5646231941
+Epoch 54 took 75.356s 	 loss = -4.50831770357, 	 grad norm = 0.480478733778,	0.272641261838
+Train (clip): 163.3006
+Val (clip): 126.8290
+Test (clip): 120.0378
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 9909/10000) (z_h: 218/256) (gates: 317/1024) (w_x: 178298/10240000) (w_h: 24777/262144) Dense: (w: 288974/2560000) Overall compression: 26.546429319
+Epoch 55 took 75.557s 	 loss = -4.51323152384, 	 grad norm = 0.387236118317,	0.272565870113
+Train (clip): 162.0043
+Val (clip): 127.0301
+Test (clip): 120.2817
+Testing took 1.456s
+Compression per layers:
+LSTM: (z_x: 9912/10000) (z_h: 225/256) (gates: 331/1024) (w_x: 179362/10240000) (w_h: 24706/262144) Dense: (w: 289063/2560000) Overall compression: 26.4881826533
+Epoch 56 took 74.233s 	 loss = -4.51747326067, 	 grad norm = 0.437434524298,	0.274802397281
+Train (clip): 160.7987
+Val (clip): 126.0588
+Test (clip): 119.3027
+Testing took 1.327s
+Compression per layers:
+LSTM: (z_x: 9905/10000) (z_h: 218/256) (gates: 334/1024) (w_x: 180224/10240000) (w_h: 25051/262144) Dense: (w: 289011/2560000) Overall compression: 26.4262876149
+Epoch 57 took 75.011s 	 loss = -4.52274137986, 	 grad norm = 0.383663713932,	0.271994166292
+Train (clip): 159.7489
+Val (clip): 126.1699
+Test (clip): 119.4606
+Testing took 1.363s
+Compression per layers:
+LSTM: (z_x: 9915/10000) (z_h: 220/256) (gates: 309/1024) (w_x: 181174/10240000) (w_h: 24893/262144) Dense: (w: 289024/2560000) Overall compression: 26.3833194302
+Epoch 58 took 74.738s 	 loss = -4.52680655557, 	 grad norm = 0.424294024706,	0.271385806117
+Train (clip): 159.2594
+Val (clip): 125.4396
+Test (clip): 118.7538
+Testing took 1.322s
+Compression per layers:
+LSTM: (z_x: 9911/10000) (z_h: 220/256) (gates: 325/1024) (w_x: 182475/10240000) (w_h: 25043/262144) Dense: (w: 288839/2560000) Overall compression: 26.3160265696
+Epoch 59 took 74.544s 	 loss = -4.53085721669, 	 grad norm = 0.416676998138,	0.27436408765
+Train (clip): 157.8893
+Val (clip): 125.4431
+Test (clip): 118.6918
+Testing took 1.250s
+Compression per layers:
+LSTM: (z_x: 9916/10000) (z_h: 216/256) (gates: 317/1024) (w_x: 183920/10240000) (w_h: 24864/262144) Dense: (w: 288849/2560000) Overall compression: 26.2485486292
+Epoch 60 took 74.668s 	 loss = -4.53679112835, 	 grad norm = 0.385534524918,	0.271349189206
+Train (clip): 157.1766
+Val (clip): 124.7375
+Test (clip): 118.1172
+Testing took 1.367s
+Compression per layers:
+LSTM: (z_x: 9915/10000) (z_h: 217/256) (gates: 315/1024) (w_x: 184805/10240000) (w_h: 25043/262144) Dense: (w: 289052/2560000) Overall compression: 26.1818881539
+Epoch 61 took 75.176s 	 loss = -4.54165304792, 	 grad norm = 0.405646950006,	0.271479735263
+Train (clip): 157.0432
+Val (clip): 125.0194
+Test (clip): 118.2327
+Testing took 1.289s
+Compression per layers:
+LSTM: (z_x: 9920/10000) (z_h: 202/256) (gates: 305/1024) (w_x: 185551/10240000) (w_h: 25114/262144) Dense: (w: 289204/2560000) Overall compression: 26.1311343572
+Epoch 62 took 74.599s 	 loss = -4.5457794402, 	 grad norm = 0.480718374252,	0.272960348912
+Train (clip): 155.9021
+Val (clip): 123.8801
+Test (clip): 117.0989
+Testing took 1.404s
+Compression per layers:
+LSTM: (z_x: 9923/10000) (z_h: 201/256) (gates: 303/1024) (w_x: 186320/10240000) (w_h: 24939/262144) Dense: (w: 288953/2560000) Overall compression: 26.1132159964
+Epoch 63 took 74.846s 	 loss = -4.54900158587, 	 grad norm = 0.407269388437,	0.272458672811
+Train (clip): 155.1285
+Val (clip): 123.7051
+Test (clip): 117.0460
+Testing took 1.410s
+Compression per layers:
+LSTM: (z_x: 9924/10000) (z_h: 193/256) (gates: 299/1024) (w_x: 187243/10240000) (w_h: 24869/262144) Dense: (w: 288972/2560000) Overall compression: 26.067773068
+Epoch 64 took 74.382s 	 loss = -4.55352033199, 	 grad norm = 0.403508782387,	0.272282433851
+Train (clip): 154.2438
+Val (clip): 123.7891
+Test (clip): 117.0404
+Testing took 1.310s
+Compression per layers:
+LSTM: (z_x: 9933/10000) (z_h: 207/256) (gates: 310/1024) (w_x: 188714/10240000) (w_h: 25035/262144) Dense: (w: 289002/2560000) Overall compression: 25.9813386746
+Epoch 65 took 74.165s 	 loss = -4.55847716563, 	 grad norm = 0.419540733099,	0.272498306327
+Train (clip): 153.2252
+Val (clip): 123.4263
+Test (clip): 116.7365
+Testing took 1.380s
+Compression per layers:
+LSTM: (z_x: 9935/10000) (z_h: 193/256) (gates: 301/1024) (w_x: 189883/10240000) (w_h: 24876/262144) Dense: (w: 289412/2560000) Overall compression: 25.9081621117
+Epoch 66 took 75.790s 	 loss = -4.56086225782, 	 grad norm = 0.720018327236,	0.272027964657
+Train (clip): 152.4587
+Val (clip): 122.9004
+Test (clip): 116.0955
+Testing took 1.366s
+Compression per layers:
+LSTM: (z_x: 9935/10000) (z_h: 198/256) (gates: 294/1024) (w_x: 190134/10240000) (w_h: 24939/262144) Dense: (w: 289184/2560000) Overall compression: 25.9037435276
+Epoch 67 took 74.609s 	 loss = -4.56552743999, 	 grad norm = 0.409491091967,	0.270873921984
+Train (clip): 151.8464
+Val (clip): 122.7331
+Test (clip): 116.0123
+Testing took 1.446s
+Compression per layers:
+LSTM: (z_x: 9928/10000) (z_h: 196/256) (gates: 302/1024) (w_x: 191116/10240000) (w_h: 25146/262144) Dense: (w: 289031/2560000) Overall compression: 25.850633197
+Epoch 68 took 74.531s 	 loss = -4.56880419116, 	 grad norm = 0.437771230936,	0.270339507367
+Train (clip): 151.7844
+Val (clip): 122.3327
+Test (clip): 115.6579
+Testing took 1.436s
+Compression per layers:
+LSTM: (z_x: 9937/10000) (z_h: 199/256) (gates: 295/1024) (w_x: 192074/10240000) (w_h: 25201/262144) Dense: (w: 289244/2560000) Overall compression: 25.7880632316
+Epoch 69 took 75.108s 	 loss = -4.57515432305, 	 grad norm = 0.400858551264,	0.269813545623
+Train (clip): 150.4233
+Val (clip): 122.1917
+Test (clip): 115.4226
+Testing took 1.400s
+Compression per layers:
+LSTM: (z_x: 9940/10000) (z_h: 192/256) (gates: 310/1024) (w_x: 193437/10240000) (w_h: 25118/262144) Dense: (w: 289461/2560000) Overall compression: 25.7120720607
+Epoch 70 took 74.849s 	 loss = -4.57676640926, 	 grad norm = 0.414949983358,	0.270534688899
+Train (clip): 149.8974
+Val (clip): 121.8956
+Test (clip): 115.1269
+Testing took 1.331s
+Compression per layers:
+LSTM: (z_x: 9942/10000) (z_h: 191/256) (gates: 293/1024) (w_x: 194150/10240000) (w_h: 25127/262144) Dense: (w: 289207/2560000) Overall compression: 25.6884071082
+Epoch 71 took 74.965s 	 loss = -4.57957845499, 	 grad norm = 0.401694148779,	0.270539410969
+Train (clip): 148.9210
+Val (clip): 121.3306
+Test (clip): 114.6582
+Testing took 1.271s
+Compression per layers:
+LSTM: (z_x: 9946/10000) (z_h: 196/256) (gates: 297/1024) (w_x: 194995/10240000) (w_h: 25001/262144) Dense: (w: 289290/2560000) Overall compression: 25.6479541947
+Epoch 72 took 75.431s 	 loss = -4.58343136661, 	 grad norm = 0.442215889692,	0.270635247554
+Train (clip): 148.2052
+Val (clip): 121.4814
+Test (clip): 114.7781
+Testing took 1.434s
+Compression per layers:
+LSTM: (z_x: 9941/10000) (z_h: 197/256) (gates: 287/1024) (w_x: 195282/10240000) (w_h: 25072/262144) Dense: (w: 288923/2560000) Overall compression: 25.6484074482
+Epoch 73 took 75.579s 	 loss = -4.58795727604, 	 grad norm = 0.403407394886,	0.269665536464
+Train (clip): 147.5818
+Val (clip): 121.2493
+Test (clip): 114.6309
+Testing took 1.451s
+Compression per layers:
+LSTM: (z_x: 9944/10000) (z_h: 188/256) (gates: 293/1024) (w_x: 196598/10240000) (w_h: 24960/262144) Dense: (w: 289232/2560000) Overall compression: 25.5724348558
+Epoch 74 took 75.961s 	 loss = -4.59207484103, 	 grad norm = 0.387958019972,	0.269423615017
+Train (clip): 146.7888
+Val (clip): 120.9298
+Test (clip): 114.2959
+Testing took 1.448s
+Compression per layers:
+LSTM: (z_x: 9946/10000) (z_h: 187/256) (gates: 291/1024) (w_x: 197292/10240000) (w_h: 25125/262144) Dense: (w: 289410/2560000) Overall compression: 25.5206231793
+Epoch 75 took 75.677s 	 loss = -4.59488997399, 	 grad norm = 0.729420661926,	0.271203664125
+Train (clip): 146.1632
+Val (clip): 120.8247
+Test (clip): 114.2535
+Testing took 1.254s
+Compression per layers:
+LSTM: (z_x: 9942/10000) (z_h: 184/256) (gates: 292/1024) (w_x: 198475/10240000) (w_h: 25219/262144) Dense: (w: 289601/2560000) Overall compression: 25.4476353754
+Epoch 76 took 74.980s 	 loss = -4.59829987379, 	 grad norm = 0.384379804134,	0.269149847957
+Train (clip): 145.6274
+Val (clip): 120.9120
+Test (clip): 114.2101
+Testing took 1.273s
+Compression per layers:
+LSTM: (z_x: 9947/10000) (z_h: 185/256) (gates: 285/1024) (w_x: 199788/10240000) (w_h: 25166/262144) Dense: (w: 289300/2560000) Overall compression: 25.4001796777
+Epoch 77 took 74.657s 	 loss = -4.60153812626, 	 grad norm = 0.404140144587,	0.26904793274
+Train (clip): 144.9335
+Val (clip): 120.3385
+Test (clip): 113.7763
+Testing took 1.292s
+Compression per layers:
+LSTM: (z_x: 9954/10000) (z_h: 183/256) (gates: 291/1024) (w_x: 200755/10240000) (w_h: 25421/262144) Dense: (w: 289461/2560000) Overall compression: 25.3320533631
+Epoch 78 took 75.320s 	 loss = -4.60537822688, 	 grad norm = 0.373385459185,	0.269094145855
+Train (clip): 144.3503
+Val (clip): 120.0429
+Test (clip): 113.5098
+Testing took 1.341s
+Compression per layers:
+LSTM: (z_x: 9947/10000) (z_h: 179/256) (gates: 294/1024) (w_x: 201868/10240000) (w_h: 25232/262144) Dense: (w: 289369/2560000) Overall compression: 25.2912449731
+Epoch 79 took 73.748s 	 loss = -4.60872529828, 	 grad norm = 0.432430177927,	0.269958168591
+Train (clip): 143.7984
+Val (clip): 119.8462
+Test (clip): 113.1597
+Testing took 1.346s
+Compression per layers:
+LSTM: (z_x: 9952/10000) (z_h: 178/256) (gates: 294/1024) (w_x: 202783/10240000) (w_h: 25525/262144) Dense: (w: 289724/2560000) Overall compression: 25.214936529
+Epoch 80 took 74.041s 	 loss = -4.61097107696, 	 grad norm = 0.388941735029,	0.266375291114
+Train (clip): 142.5630
+Val (clip): 119.6233
+Test (clip): 113.2193
+Testing took 1.319s
+Compression per layers:
+LSTM: (z_x: 9954/10000) (z_h: 174/256) (gates: 278/1024) (w_x: 203121/10240000) (w_h: 25568/262144) Dense: (w: 289597/2560000) Overall compression: 25.2025792709
+Epoch 81 took 74.804s 	 loss = -4.61471227701, 	 grad norm = 0.397552967072,	0.26692202786
+Train (clip): 142.4311
+Val (clip): 119.5741
+Test (clip): 112.9884
+Testing took 1.427s
+Compression per layers:
+LSTM: (z_x: 9954/10000) (z_h: 173/256) (gates: 286/1024) (w_x: 204065/10240000) (w_h: 25349/262144) Dense: (w: 289706/2560000) Overall compression: 25.1620896902
+Epoch 82 took 74.386s 	 loss = -4.61639841621, 	 grad norm = 0.371472448111,	0.267012597836
+Train (clip): 141.1654
+Val (clip): 119.3039
+Test (clip): 112.7340
+Testing took 1.431s
+Compression per layers:
+LSTM: (z_x: 9956/10000) (z_h: 176/256) (gates: 286/1024) (w_x: 205636/10240000) (w_h: 25316/262144) Dense: (w: 289875/2560000) Overall compression: 25.0796214482
+Epoch 83 took 74.426s 	 loss = -4.61985557802, 	 grad norm = 0.390684098005,	0.268402800538
+Train (clip): 141.1350
+Val (clip): 119.6777
+Test (clip): 113.2103
+Testing took 1.433s
+Compression per layers:
+LSTM: (z_x: 9955/10000) (z_h: 184/256) (gates: 289/1024) (w_x: 206461/10240000) (w_h: 25602/262144) Dense: (w: 290002/2560000) Overall compression: 25.020148832
+Epoch 84 took 75.016s 	 loss = -4.62307757459, 	 grad norm = 0.50438773632,	0.266123352514
+Train (clip): 140.3834
+Val (clip): 119.0599
+Test (clip): 112.5910
+Testing took 1.434s
+Compression per layers:
+LSTM: (z_x: 9955/10000) (z_h: 173/256) (gates: 281/1024) (w_x: 207013/10240000) (w_h: 25258/262144) Dense: (w: 289787/2560000) Overall compression: 25.020484314
+Epoch 85 took 74.262s 	 loss = -4.62558992153, 	 grad norm = 0.385077476501,	0.268089446587
+Train (clip): 139.8815
+Val (clip): 119.2894
+Test (clip): 112.8431
+Testing took 1.425s
+Compression per layers:
+LSTM: (z_x: 9958/10000) (z_h: 183/256) (gates: 281/1024) (w_x: 208013/10240000) (w_h: 25683/262144) Dense: (w: 289816/2560000) Overall compression: 24.9509925274
+Epoch 86 took 74.980s 	 loss = -4.62766537721, 	 grad norm = 0.40510571003,	0.267678706904
+Train (clip): 139.2097
+Val (clip): 118.6320
+Test (clip): 112.3006
+Testing took 1.429s
+Compression per layers:
+LSTM: (z_x: 9963/10000) (z_h: 176/256) (gates: 295/1024) (w_x: 209013/10240000) (w_h: 25576/262144) Dense: (w: 289997/2560000) Overall compression: 24.899909643
+Epoch 87 took 74.111s 	 loss = -4.63110869215, 	 grad norm = 0.464185506105,	0.267530222614
+Train (clip): 138.9223
+Val (clip): 118.8682
+Test (clip): 112.5519
+Testing took 1.310s
+Compression per layers:
+LSTM: (z_x: 9968/10000) (z_h: 175/256) (gates: 293/1024) (w_x: 209602/10240000) (w_h: 25803/262144) Dense: (w: 290542/2560000) Overall compression: 24.8354758179
+Epoch 88 took 74.287s 	 loss = -4.63433476767, 	 grad norm = 0.385439813137,	0.265787359372
+Train (clip): 137.8671
+Val (clip): 118.4630
+Test (clip): 112.0799
+Testing took 1.362s
+Compression per layers:
+LSTM: (z_x: 9969/10000) (z_h: 183/256) (gates: 294/1024) (w_x: 210724/10240000) (w_h: 25621/262144) Dense: (w: 289617/2560000) Overall compression: 24.8347675307
+Epoch 89 took 73.862s 	 loss = -4.63696007449, 	 grad norm = 0.440223932266,	0.264177060379
+Train (clip): 137.6002
+Val (clip): 118.4480
+Test (clip): 112.0795
+Testing took 1.301s
+Compression per layers:
+LSTM: (z_x: 9964/10000) (z_h: 185/256) (gates: 302/1024) (w_x: 211711/10240000) (w_h: 25877/262144) Dense: (w: 290113/2560000) Overall compression: 24.7529263731
+Epoch 90 took 74.367s 	 loss = -4.63896429413, 	 grad norm = 0.474253624678,	0.26665051066
+Train (clip): 137.0937
+Val (clip): 118.0188
+Test (clip): 111.7281
+Testing took 1.419s
+Compression per layers:
+LSTM: (z_x: 9966/10000) (z_h: 176/256) (gates: 297/1024) (w_x: 212690/10240000) (w_h: 25778/262144) Dense: (w: 290703/2560000) Overall compression: 24.6841644761
+Epoch 91 took 74.352s 	 loss = -4.64213522311, 	 grad norm = 0.37342607975,	0.26531234827
+Train (clip): 136.3451
+Val (clip): 118.1484
+Test (clip): 111.8126
+Testing took 1.246s
+Compression per layers:
+LSTM: (z_x: 9963/10000) (z_h: 174/256) (gates: 285/1024) (w_x: 213462/10240000) (w_h: 25612/262144) Dense: (w: 290724/2560000) Overall compression: 24.6549515098
+Epoch 92 took 74.222s 	 loss = -4.64416447755, 	 grad norm = 0.387468278408,	0.264914998915
+Train (clip): 136.1024
+Val (clip): 117.9641
+Test (clip): 111.5177
+Testing took 1.434s
+Compression per layers:
+LSTM: (z_x: 9965/10000) (z_h: 172/256) (gates: 294/1024) (w_x: 214680/10240000) (w_h: 25566/262144) Dense: (w: 290603/2560000) Overall compression: 24.6061384688
+Epoch 93 took 74.468s 	 loss = -4.64730053618, 	 grad norm = 0.424425840378,	0.265268843181
+Train (clip): 135.7992
+Val (clip): 118.3851
+Test (clip): 112.1325
+Testing took 1.355s
+Compression per layers:
+LSTM: (z_x: 9961/10000) (z_h: 175/256) (gates: 291/1024) (w_x: 215257/10240000) (w_h: 25638/262144) Dense: (w: 290617/2560000) Overall compression: 24.5754451452
+Epoch 94 took 74.157s 	 loss = -4.6504760143, 	 grad norm = 0.408052712679,	0.265045988955
+Train (clip): 135.0858
+Val (clip): 117.6821
+Test (clip): 111.4403
+Testing took 1.344s
+Compression per layers:
+LSTM: (z_x: 9970/10000) (z_h: 176/256) (gates: 291/1024) (w_x: 216039/10240000) (w_h: 25428/262144) Dense: (w: 290581/2560000) Overall compression: 24.550687156
+Epoch 95 took 74.768s 	 loss = -4.65219003178, 	 grad norm = 0.355342835188,	0.265456636842
+Train (clip): 134.4887
+Val (clip): 118.0177
+Test (clip): 111.8234
+Testing took 1.425s
+Compression per layers:
+LSTM: (z_x: 9975/10000) (z_h: 170/256) (gates: 283/1024) (w_x: 217200/10240000) (w_h: 25679/262144) Dense: (w: 291123/2560000) Overall compression: 24.4608522065
+Epoch 96 took 73.371s 	 loss = -4.65385811361, 	 grad norm = 0.636570394039,	0.263858290645
+Train (clip): 133.8450
+Val (clip): 117.8355
+Test (clip): 111.5442
+Testing took 1.299s
+Compression per layers:
+LSTM: (z_x: 9972/10000) (z_h: 171/256) (gates: 290/1024) (w_x: 218071/10240000) (w_h: 25819/262144) Dense: (w: 291219/2560000) Overall compression: 24.4102491268
+Epoch 97 took 74.656s 	 loss = -4.65619508792, 	 grad norm = 0.371652215719,	0.263921356955
+Train (clip): 133.7379
+Val (clip): 117.6372
+Test (clip): 111.4174
+Testing took 1.295s
+Compression per layers:
+LSTM: (z_x: 9968/10000) (z_h: 167/256) (gates: 287/1024) (w_x: 219588/10240000) (w_h: 25926/262144) Dense: (w: 291253/2560000) Overall compression: 24.334849199
+Epoch 98 took 73.658s 	 loss = -4.65933447405, 	 grad norm = 1.59944498539,	0.264622813409
+Train (clip): 133.0156
+Val (clip): 117.9908
+Test (clip): 111.7398
+Testing took 1.352s
+Compression per layers:
+LSTM: (z_x: 9970/10000) (z_h: 166/256) (gates: 289/1024) (w_x: 220206/10240000) (w_h: 25958/262144) Dense: (w: 291107/2560000) Overall compression: 24.3120213077
+Epoch 99 took 74.732s 	 loss = -4.66297820722, 	 grad norm = 0.394576191902,	0.262984827304
+Train (clip): 132.3756
+Val (clip): 117.1815
+Test (clip): 111.0508
+Testing took 1.388s
+Compression per layers:
+LSTM: (z_x: 9969/10000) (z_h: 169/256) (gates: 290/1024) (w_x: 221098/10240000) (w_h: 25591/262144) Dense: (w: 290836/2560000) Overall compression: 24.3005329985
+Epoch 100 took 74.960s 	 loss = -4.66390166063, 	 grad norm = 0.390449762344,	0.264598893258
+Train (clip): 132.0313
+Val (clip): 117.3647
+Test (clip): 111.2537
+Testing took 1.333s
+Compression per layers:
+LSTM: (z_x: 9970/10000) (z_h: 164/256) (gates: 292/1024) (w_x: 222518/10240000) (w_h: 25765/262144) Dense: (w: 291198/2560000) Overall compression: 24.2124263876
+Save model: Results/weights_LCCL_epoch_100.npy
+Epoch 101 took 74.663s 	 loss = -4.66709093266, 	 grad norm = 0.55200201273,	0.26043677795
+Train (clip): 131.3911
+Val (clip): 116.8695
+Test (clip): 110.7025
+Testing took 1.288s
+Compression per layers:
+LSTM: (z_x: 9970/10000) (z_h: 173/256) (gates: 297/1024) (w_x: 222658/10240000) (w_h: 26055/262144) Dense: (w: 291626/2560000) Overall compression: 24.1739796683
+Epoch 102 took 74.442s 	 loss = -4.66937455235, 	 grad norm = 0.629976034164,	0.262676257326
+Train (clip): 130.8184
+Val (clip): 116.8843
+Test (clip): 110.7833
+Testing took 1.283s
+Compression per layers:
+LSTM: (z_x: 9973/10000) (z_h: 173/256) (gates: 290/1024) (w_x: 224234/10240000) (w_h: 26109/262144) Dense: (w: 291558/2560000) Overall compression: 24.1042994938
+Epoch 103 took 73.892s 	 loss = -4.67074719369, 	 grad norm = 0.483026564121,	0.262130123933
+Train (clip): 130.7057
+Val (clip): 116.8092
+Test (clip): 110.7995
+Testing took 1.335s
+Compression per layers:
+LSTM: (z_x: 9975/10000) (z_h: 165/256) (gates: 296/1024) (w_x: 224618/10240000) (w_h: 26203/262144) Dense: (w: 291350/2560000) Overall compression: 24.0922956042
+Epoch 104 took 74.423s 	 loss = -4.67448191233, 	 grad norm = 0.400290459394,	0.261484373424
+Train (clip): 130.0040
+Val (clip): 116.9038
+Test (clip): 110.8960
+Testing took 1.420s
+Compression per layers:
+LSTM: (z_x: 9971/10000) (z_h: 164/256) (gates: 290/1024) (w_x: 225800/10240000) (w_h: 26019/262144) Dense: (w: 291920/2560000) Overall compression: 24.022819772
+Epoch 105 took 74.405s 	 loss = -4.67524361758, 	 grad norm = 0.367210298777,	0.262239210667
+Train (clip): 129.5471
+Val (clip): 116.6035
+Test (clip): 110.5195
+Testing took 1.284s
+Compression per layers:
+LSTM: (z_x: 9977/10000) (z_h: 166/256) (gates: 288/1024) (w_x: 226706/10240000) (w_h: 26205/262144) Dense: (w: 292070/2560000) Overall compression: 23.9680722814
+Epoch 106 took 73.971s 	 loss = -4.67827065258, 	 grad norm = 0.381908714771,	0.260009478266
+Train (clip): 128.8548
+Val (clip): 116.5049
+Test (clip): 110.4892
+Testing took 1.388s
+Compression per layers:
+LSTM: (z_x: 9970/10000) (z_h: 171/256) (gates: 290/1024) (w_x: 227623/10240000) (w_h: 26081/262144) Dense: (w: 292278/2560000) Overall compression: 23.9241293669
+Epoch 107 took 75.365s 	 loss = -4.67920324591, 	 grad norm = 0.485506862402,	0.262636060313
+Train (clip): 128.8422
+Val (clip): 116.4631
+Test (clip): 110.3310
+Testing took 1.423s
+Compression per layers:
+LSTM: (z_x: 9973/10000) (z_h: 160/256) (gates: 293/1024) (w_x: 228756/10240000) (w_h: 26179/262144) Dense: (w: 292164/2560000) Overall compression: 23.875283998
+Epoch 108 took 74.425s 	 loss = -4.68149325421, 	 grad norm = 0.382460653782,	0.260886198677
+Train (clip): 128.0477
+Val (clip): 116.7800
+Test (clip): 110.7987
+Testing took 1.434s
+Compression per layers:
+LSTM: (z_x: 9975/10000) (z_h: 161/256) (gates: 280/1024) (w_x: 229466/10240000) (w_h: 25796/262144) Dense: (w: 292144/2560000) Overall compression: 23.8618940969
+Epoch 109 took 74.520s 	 loss = -4.68296394982, 	 grad norm = 1.32908880711,	0.262806867817
+Train (clip): 127.1926
+Val (clip): 116.5041
+Test (clip): 110.4409
+Testing took 1.308s
+Compression per layers:
+LSTM: (z_x: 9977/10000) (z_h: 165/256) (gates: 278/1024) (w_x: 230432/10240000) (w_h: 26103/262144) Dense: (w: 292195/2560000) Overall compression: 23.804319064
+Epoch 110 took 74.941s 	 loss = -4.68552996458, 	 grad norm = 0.418599843979,	0.259353719813
+Train (clip): 127.0455
+Val (clip): 116.2511
+Test (clip): 110.2523
+Testing took 1.295s
+Compression per layers:
+LSTM: (z_x: 9976/10000) (z_h: 161/256) (gates: 284/1024) (w_x: 231497/10240000) (w_h: 25997/262144) Dense: (w: 292329/2560000) Overall compression: 23.7569981612
+Epoch 111 took 73.739s 	 loss = -4.68787401439, 	 grad norm = 0.423029005527,	0.258444058931
+Train (clip): 126.6961
+Val (clip): 116.7725
+Test (clip): 110.8498
+Testing took 1.435s
+Compression per layers:
+LSTM: (z_x: 9980/10000) (z_h: 159/256) (gates: 283/1024) (w_x: 232457/10240000) (w_h: 26002/262144) Dense: (w: 292787/2560000) Overall compression: 23.6956712611
+Epoch 112 took 73.293s 	 loss = -4.68960084995, 	 grad norm = 1.12115097046,	0.260484160716
+Train (clip): 126.4174
+Val (clip): 116.2446
+Test (clip): 110.2968
+Testing took 1.401s
+Compression per layers:
+LSTM: (z_x: 9977/10000) (z_h: 167/256) (gates: 282/1024) (w_x: 233597/10240000) (w_h: 25929/262144) Dense: (w: 292782/2560000) Overall compression: 23.6501082729
+Epoch 113 took 75.071s 	 loss = -4.69175340384, 	 grad norm = 0.390221506357,	0.259336367842
+Train (clip): 125.5185
+Val (clip): 116.3317
+Test (clip): 110.3845
+Testing took 1.393s
+Compression per layers:
+LSTM: (z_x: 9982/10000) (z_h: 164/256) (gates: 283/1024) (w_x: 234591/10240000) (w_h: 26286/262144) Dense: (w: 293333/2560000) Overall compression: 23.5689431804
+Epoch 114 took 74.031s 	 loss = -4.69328214325, 	 grad norm = 0.384391874075,	0.259002037221
+Train (clip): 125.0992
+Val (clip): 116.3542
+Test (clip): 110.3356
+Testing took 1.428s
+Compression per layers:
+LSTM: (z_x: 9980/10000) (z_h: 160/256) (gates: 284/1024) (w_x: 235270/10240000) (w_h: 26163/262144) Dense: (w: 293096/2560000) Overall compression: 23.5553848401
+Epoch 115 took 74.273s 	 loss = -4.69621529477, 	 grad norm = 0.747432649136,	0.259713701724
+Train (clip): 125.0818
+Val (clip): 116.0465
+Test (clip): 110.1231
+Testing took 1.427s
+Compression per layers:
+LSTM: (z_x: 9984/10000) (z_h: 159/256) (gates: 285/1024) (w_x: 235737/10240000) (w_h: 26088/262144) Dense: (w: 293186/2560000) Overall compression: 23.5349281366
+Epoch 116 took 74.625s 	 loss = -4.69859109527, 	 grad norm = 0.395388633013,	0.259223564975
+Train (clip): 124.3420
+Val (clip): 115.7439
+Test (clip): 109.7593
+Testing took 1.434s
+Compression per layers:
+LSTM: (z_x: 9982/10000) (z_h: 162/256) (gates: 283/1024) (w_x: 236968/10240000) (w_h: 25935/262144) Dense: (w: 292963/2560000) Overall compression: 23.4987281107
+Epoch 117 took 74.105s 	 loss = -4.69972519026, 	 grad norm = 0.630786061287,	0.257485638415
+Train (clip): 123.9582
+Val (clip): 116.0455
+Test (clip): 109.9176
+Testing took 1.312s
+Compression per layers:
+LSTM: (z_x: 9982/10000) (z_h: 170/256) (gates: 291/1024) (w_x: 238021/10240000) (w_h: 26300/262144) Dense: (w: 293764/2560000) Overall compression: 23.4052948924
+Epoch 118 took 74.634s 	 loss = -4.70097423984, 	 grad norm = 0.445379167795,	0.257880189674
+Train (clip): 123.5386
+Val (clip): 115.8085
+Test (clip): 109.6917
+Testing took 1.341s
+Compression per layers:
+LSTM: (z_x: 9984/10000) (z_h: 158/256) (gates: 283/1024) (w_x: 238386/10240000) (w_h: 26196/262144) Dense: (w: 293574/2560000) Overall compression: 23.4023176316
+Epoch 119 took 74.445s 	 loss = -4.70343139908, 	 grad norm = 0.529648959637,	0.258297980442
+Train (clip): 122.9758
+Val (clip): 116.1072
+Test (clip): 110.0970
+Testing took 1.308s
+Compression per layers:
+LSTM: (z_x: 9984/10000) (z_h: 159/256) (gates: 274/1024) (w_x: 239421/10240000) (w_h: 26046/262144) Dense: (w: 293683/2560000) Overall compression: 23.3607153715
+Epoch 120 took 74.672s 	 loss = -4.70638777344, 	 grad norm = 0.704606711864,	0.258249675599
+Train (clip): 122.4434
+Val (clip): 115.6409
+Test (clip): 109.6736
+Testing took 1.417s
+Compression per layers:
+LSTM: (z_x: 9982/10000) (z_h: 167/256) (gates: 282/1024) (w_x: 241242/10240000) (w_h: 26100/262144) Dense: (w: 294003/2560000) Overall compression: 23.2693691046
+Epoch 121 took 74.517s 	 loss = -4.70681238798, 	 grad norm = 0.509264290333,	0.256683949677
+Train (clip): 121.9523
+Val (clip): 115.5664
+Test (clip): 109.6619
+Testing took 1.330s
+Compression per layers:
+LSTM: (z_x: 9984/10000) (z_h: 161/256) (gates: 288/1024) (w_x: 241554/10240000) (w_h: 26350/262144) Dense: (w: 293863/2560000) Overall compression: 23.2518891284
+Epoch 122 took 74.206s 	 loss = -4.70868777469, 	 grad norm = 0.381243556738,	0.257000750214
+Train (clip): 121.8661
+Val (clip): 115.9521
+Test (clip): 109.9224
+Testing took 1.313s
+Compression per layers:
+LSTM: (z_x: 9985/10000) (z_h: 157/256) (gates: 285/1024) (w_x: 242829/10240000) (w_h: 26290/262144) Dense: (w: 294308/2560000) Overall compression: 23.183383118
+Epoch 123 took 75.013s 	 loss = -4.71028340071, 	 grad norm = 0.384954720736,	0.258585690788
+Train (clip): 121.4484
+Val (clip): 115.6896
+Test (clip): 109.7911
+Testing took 1.400s
+Compression per layers:
+LSTM: (z_x: 9983/10000) (z_h: 158/256) (gates: 288/1024) (w_x: 243491/10240000) (w_h: 26491/262144) Dense: (w: 294023/2560000) Overall compression: 23.1596244714
+Epoch 124 took 73.924s 	 loss = -4.71317308952, 	 grad norm = 0.445427954197,	0.256627017511
+Train (clip): 121.3257
+Val (clip): 115.7188
+Test (clip): 109.7766
+Testing took 1.308s
+Compression per layers:
+LSTM: (z_x: 9981/10000) (z_h: 159/256) (gates: 286/1024) (w_x: 244285/10240000) (w_h: 26477/262144) Dense: (w: 294979/2560000) Overall compression: 23.0885581918
+Epoch 125 took 74.754s 	 loss = -4.71468867598, 	 grad norm = 0.389623343945,	0.256888770429
+Train (clip): 121.4693
+Val (clip): 115.7871
+Test (clip): 109.8859
+Testing took 1.313s
+Compression per layers:
+LSTM: (z_x: 9985/10000) (z_h: 158/256) (gates: 284/1024) (w_x: 245486/10240000) (w_h: 26615/262144) Dense: (w: 294593/2560000) Overall compression: 23.0497305424
+Epoch 126 took 74.768s 	 loss = -4.71722883245, 	 grad norm = 0.36047244072,	0.255103068736
+Train (clip): 119.7246
+Val (clip): 115.3474
+Test (clip): 109.4583
+Testing took 1.311s
+Compression per layers:
+LSTM: (z_x: 9981/10000) (z_h: 163/256) (gates: 291/1024) (w_x: 246272/10240000) (w_h: 26477/262144) Dense: (w: 294985/2560000) Overall compression: 23.0075070367
+Epoch 127 took 74.937s 	 loss = -4.71790350501, 	 grad norm = 0.421681106091,	0.255712108063
+Train (clip): 119.6844
+Val (clip): 115.3224
+Test (clip): 109.3879
+Testing took 1.377s
+Compression per layers:
+LSTM: (z_x: 9983/10000) (z_h: 152/256) (gates: 280/1024) (w_x: 247296/10240000) (w_h: 26355/262144) Dense: (w: 295251/2560000) Overall compression: 22.9602708375
+Epoch 128 took 74.415s 	 loss = -4.71972277808, 	 grad norm = 0.395419329405,	0.254626894428
+Train (clip): 119.2773
+Val (clip): 115.4506
+Test (clip): 109.5316
+Testing took 1.424s
+Compression per layers:
+LSTM: (z_x: 9983/10000) (z_h: 157/256) (gates: 283/1024) (w_x: 247669/10240000) (w_h: 26692/262144) Dense: (w: 294647/2560000) Overall compression: 22.9559935888
+Epoch 129 took 74.928s 	 loss = -4.72201400469, 	 grad norm = 0.633763551712,	0.254264099627
+Train (clip): 118.9685
+Val (clip): 115.6388
+Test (clip): 109.6881
+Testing took 1.360s
+Compression per layers:
+LSTM: (z_x: 9984/10000) (z_h: 157/256) (gates: 284/1024) (w_x: 248778/10240000) (w_h: 26557/262144) Dense: (w: 295203/2560000) Overall compression: 22.8944329738
+Epoch 130 took 75.328s 	 loss = -4.72213114259, 	 grad norm = 0.442864865065,	0.255620448058
+Train (clip): 119.0099
+Val (clip): 115.3607
+Test (clip): 109.4030
+Testing took 1.379s
+Compression per layers:
+LSTM: (z_x: 9983/10000) (z_h: 158/256) (gates: 285/1024) (w_x: 249782/10240000) (w_h: 26412/262144) Dense: (w: 295039/2560000) Overall compression: 22.8665780863
+Epoch 131 took 74.277s 	 loss = -4.72505252462, 	 grad norm = 0.654075443745,	0.254977249722
+Train (clip): 118.7413
+Val (clip): 115.5723
+Test (clip): 109.5911
+Testing took 1.426s
+Compression per layers:
+LSTM: (z_x: 9983/10000) (z_h: 153/256) (gates: 283/1024) (w_x: 250893/10240000) (w_h: 26608/262144) Dense: (w: 295369/2560000) Overall compression: 22.8012358825
+Epoch 132 took 74.468s 	 loss = -4.72727007605, 	 grad norm = 0.350735157728,	0.255329947066
+Train (clip): 118.2305
+Val (clip): 115.3875
+Test (clip): 109.6362
+Testing took 1.411s
+Compression per layers:
+LSTM: (z_x: 9988/10000) (z_h: 163/256) (gates: 288/1024) (w_x: 251565/10240000) (w_h: 26681/262144) Dense: (w: 295935/2560000) Overall compression: 22.7491749117
+Epoch 133 took 74.944s 	 loss = -4.72778644828, 	 grad norm = 0.683531880379,	0.254333602018
+Train (clip): 117.8858
+Val (clip): 114.9885
+Test (clip): 109.0657
+Testing took 1.396s
+Compression per layers:
+LSTM: (z_x: 9985/10000) (z_h: 158/256) (gates: 288/1024) (w_x: 252188/10240000) (w_h: 26540/262144) Dense: (w: 295754/2560000) Overall compression: 22.7372554754
+Epoch 134 took 75.208s 	 loss = -4.7303439081, 	 grad norm = 0.383403867483,	0.253534321541
+Train (clip): 116.8979
+Val (clip): 115.1464
+Test (clip): 109.3271
+Testing took 1.251s
+Compression per layers:
+LSTM: (z_x: 9989/10000) (z_h: 155/256) (gates: 281/1024) (w_x: 253347/10240000) (w_h: 26731/262144) Dense: (w: 296219/2560000) Overall compression: 22.6656463594
+Epoch 135 took 74.122s 	 loss = -4.73136198436, 	 grad norm = 0.756140708923,	0.255567208938
+Train (clip): 117.2565
+Val (clip): 115.3667
+Test (clip): 109.4034
+Testing took 1.304s
+Compression per layers:
+LSTM: (z_x: 9984/10000) (z_h: 158/256) (gates: 283/1024) (w_x: 254443/10240000) (w_h: 26691/262144) Dense: (w: 296295/2560000) Overall compression: 22.6212123049
+Epoch 136 took 74.596s 	 loss = -4.73240028324, 	 grad norm = 0.505354404449,	0.254051142841
+Train (clip): 117.1776
+Val (clip): 115.1148
+Test (clip): 109.3256
+Testing took 1.435s
+Compression per layers:
+LSTM: (z_x: 9986/10000) (z_h: 155/256) (gates: 289/1024) (w_x: 255051/10240000) (w_h: 26668/262144) Dense: (w: 295731/2560000) Overall compression: 22.6203896441
+Epoch 137 took 74.503s 	 loss = -4.73488054694, 	 grad norm = 0.692474424839,	0.253670322374
+Train (clip): 116.8102
+Val (clip): 115.5705
+Test (clip): 109.7050
+Testing took 1.422s
+Compression per layers:
+LSTM: (z_x: 9987/10000) (z_h: 156/256) (gates: 293/1024) (w_x: 255962/10240000) (w_h: 26587/262144) Dense: (w: 296024/2560000) Overall compression: 22.5764838663
+Epoch 138 took 74.702s 	 loss = -4.73577286486, 	 grad norm = 0.368224412203,	0.252797692888
+Train (clip): 116.1839
+Val (clip): 115.5867
+Test (clip): 109.6555
+Testing took 1.435s
+Compression per layers:
+LSTM: (z_x: 9989/10000) (z_h: 158/256) (gates: 283/1024) (w_x: 256942/10240000) (w_h: 26624/262144) Dense: (w: 296823/2560000) Overall compression: 22.5058434946
+Epoch 139 took 74.811s 	 loss = -4.73814168777, 	 grad norm = 0.415101408958,	0.252372333982
+Train (clip): 116.1432
+Val (clip): 115.1924
+Test (clip): 109.2011
+Testing took 1.384s
+Compression per layers:
+LSTM: (z_x: 9985/10000) (z_h: 154/256) (gates: 279/1024) (w_x: 257587/10240000) (w_h: 26662/262144) Dense: (w: 296618/2560000) Overall compression: 22.4873232599
+Epoch 140 took 74.558s 	 loss = -4.7394302543, 	 grad norm = 0.394981443882,	0.251588875558
+Train (clip): 115.6671
+Val (clip): 115.4497
+Test (clip): 109.5102
+Testing took 1.336s
+Compression per layers:
+LSTM: (z_x: 9987/10000) (z_h: 149/256) (gates: 283/1024) (w_x: 258855/10240000) (w_h: 26516/262144) Dense: (w: 296759/2560000) Overall compression: 22.438534348
+Epoch 141 took 74.125s 	 loss = -4.74017893814, 	 grad norm = 0.575653791428,	0.252424666286
+Train (clip): 115.1177
+Val (clip): 115.4269
+Test (clip): 109.4694
+Testing took 1.375s
+Compression per layers:
+LSTM: (z_x: 9990/10000) (z_h: 153/256) (gates: 277/1024) (w_x: 259449/10240000) (w_h: 26598/262144) Dense: (w: 297237/2560000) Overall compression: 22.3941407616
+Epoch 142 took 73.592s 	 loss = -4.74257138698, 	 grad norm = 0.602058470249,	0.253947739465
+Train (clip): 114.9641
+Val (clip): 115.3338
+Test (clip): 109.4391
+Testing took 1.381s
+Compression per layers:
+LSTM: (z_x: 9989/10000) (z_h: 157/256) (gates: 289/1024) (w_x: 260317/10240000) (w_h: 26704/262144) Dense: (w: 297062/2560000) Overall compression: 22.3635065564
+Epoch 143 took 74.022s 	 loss = -4.74561410799, 	 grad norm = 0.353680849075,	0.250916927658
+Train (clip): 114.4819
+Val (clip): 115.5253
+Test (clip): 109.6999
+Testing took 1.297s
+Compression per layers:
+LSTM: (z_x: 9991/10000) (z_h: 155/256) (gates: 283/1024) (w_x: 261015/10240000) (w_h: 26938/262144) Dense: (w: 297173/2560000) Overall compression: 22.3236431128
+Epoch 144 took 74.034s 	 loss = -4.74509242359, 	 grad norm = 0.864374101162,	0.253252843112
+Train (clip): 114.3639
+Val (clip): 115.2955
+Test (clip): 109.4027
+Testing took 1.334s
+Compression per layers:
+LSTM: (z_x: 9992/10000) (z_h: 150/256) (gates: 283/1024) (w_x: 261736/10240000) (w_h: 26804/262144) Dense: (w: 297249/2560000) Overall compression: 22.2983770607
+Epoch 145 took 74.863s 	 loss = -4.74625297386, 	 grad norm = 0.366506129503,	0.250639432076
+Train (clip): 114.4170
+Val (clip): 115.0739
+Test (clip): 109.2731
+Testing took 1.338s
+Compression per layers:
+LSTM: (z_x: 9988/10000) (z_h: 153/256) (gates: 287/1024) (w_x: 262763/10240000) (w_h: 26946/262144) Dense: (w: 297767/2560000) Overall compression: 22.2343448924
+Epoch 146 took 75.435s 	 loss = -4.74897232991, 	 grad norm = 0.360002160072,	0.250809077326
+Train (clip): 114.2304
+Val (clip): 115.3699
+Test (clip): 109.5664
+Testing took 1.434s
+Compression per layers:
+LSTM: (z_x: 9990/10000) (z_h: 159/256) (gates: 295/1024) (w_x: 263721/10240000) (w_h: 26907/262144) Dense: (w: 297722/2560000) Overall compression: 22.2013155435
+Epoch 147 took 74.544s 	 loss = -4.75005982072, 	 grad norm = 0.366509139538,	0.249762108348
+Train (clip): 113.6475
+Val (clip): 115.3278
+Test (clip): 109.3778
+Testing took 1.433s
+Compression per layers:
+LSTM: (z_x: 9989/10000) (z_h: 159/256) (gates: 284/1024) (w_x: 263948/10240000) (w_h: 26622/262144) Dense: (w: 297875/2560000) Overall compression: 22.1977313088
+Epoch 148 took 74.611s 	 loss = -4.75158924861, 	 grad norm = 0.443319112062,	0.24958321287
+Train (clip): 112.9611
+Val (clip): 115.0584
+Test (clip): 109.0660
+Testing took 1.349s
+Compression per layers:
+LSTM: (z_x: 9987/10000) (z_h: 155/256) (gates: 290/1024) (w_x: 265174/10240000) (w_h: 26977/262144) Dense: (w: 298056/2560000) Overall compression: 22.1314623513
+Epoch 149 took 74.854s 	 loss = -4.75320891849, 	 grad norm = 0.361965328455,	0.249101229874
+Train (clip): 112.4420
+Val (clip): 115.0220
+Test (clip): 109.1938
+Testing took 1.428s
+Compression per layers:
+LSTM: (z_x: 9993/10000) (z_h: 151/256) (gates: 285/1024) (w_x: 265627/10240000) (w_h: 26750/262144) Dense: (w: 298052/2560000) Overall compression: 22.1231409704
+Epoch 150 took 74.603s 	 loss = -4.75456348325, 	 grad norm = 0.680666983128,	0.250379083225
+Train (clip): 112.7190
+Val (clip): 115.0373
+Test (clip): 109.2220
+Testing took 1.393s
+Compression per layers:
+LSTM: (z_x: 9990/10000) (z_h: 156/256) (gates: 288/1024) (w_x: 266247/10240000) (w_h: 26892/262144) Dense: (w: 298041/2560000) Overall compression: 22.0950370446
+Save model: Results/weights_LCCL_epoch_150.npy
+Save model: Results/weights_LCCL.npy

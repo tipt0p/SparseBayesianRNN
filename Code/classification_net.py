@@ -1,3 +1,4 @@
+from __future__ import print_function
 from layers_dense import BayesianDense, Dense
 from layers_embedding import BayesianEmbedding
 from layers_lstm import BayesianLSTM
@@ -66,8 +67,8 @@ class ClassificationNet:
             print(layer_name, end=": ")
             for key, matrix in masks.items():
                 print("(%s: %d/%d)"%(key, matrix.sum(), matrix.size), end=" ")
-            print(flush=True)
-        print("Overall compression:", overall_compression, flush=True)
+            #print(flush=True)
+        print("Overall compression:", overall_compression)#, flush=True)
         
     def compress(self):
         inv = np.logical_not

@@ -48,14 +48,14 @@ class BayesianEmbedding(Embedding):
             self.log_sigma_in = self.add_param(Constant(log_sigma_init), shape=(input_size,), name="log_in", regularizable=False)
         self.thresh = 3.0
         
-    def clip(self, mtx, to=8):
+    def clip_func(self, mtx, to=8):
         mtx = T.switch(T.le(mtx, -to), -to, mtx)
         mtx = T.switch(T.ge(mtx, to), to, mtx)
         return mtx
     
     def generate_noise_and_clip(self, num_batch, \
                                     deterministic = False,\
-                                    clip_train=False, clip_test=False):
+                                    clip=False):
         if not deterministic:
             if self.config[0] in {"L", "N"}:
                 self.w_noise = self._srng.normal((self.input_size, self.output_size), avg=0, std=1, dtype=floatX) * T.exp(self.log_sigma_w)
@@ -70,14 +70,14 @@ class BayesianEmbedding(Embedding):
             self.in_noise = T.ones(1, dtype=floatX) if self.config[1] not in {"L", "N"}\
                             else self.mu_in
                             
-        if clip_test or clip_train:
+        if clip:
             if self.config[0] == "L":
-                log_alpha_w = self.clip(2*self.log_sigma_w-T.log(self.W**2))
+                log_alpha_w = self.clip_func(2*self.log_sigma_w-T.log(self.W**2))
                 self.w_clip = T.le(log_alpha_w, self.thresh)
             else:
                 self.w_clip = T.ones(1, dtype=floatX)
             if self.config[1] == "L":
-                log_alpha_in = self.clip(2*self.log_sigma_in-T.log(self.mu_in**2))
+                log_alpha_in = self.clip_func(2*self.log_sigma_in-T.log(self.mu_in**2))
                 self.in_clip = T.le(log_alpha_in, self.thresh)
             else:
                 self.in_clip = T.ones(1, dtype=floatX)
@@ -85,8 +85,8 @@ class BayesianEmbedding(Embedding):
             self.w_clip = T.ones(1, dtype=floatX)
             self.in_clip = T.ones(1, dtype=floatX)
     
-    def get_output_for(self, input, deterministic=False, clip_train=False, clip_test=False, **kwargs):
-        self.generate_noise_and_clip(input.shape[0], deterministic, clip_train, clip_test, **kwargs)
+    def get_output_for(self, input, deterministic=False, clip=False, **kwargs):
+        self.generate_noise_and_clip(input.shape[0], deterministic, clip, **kwargs)
         shape = (input.shape[0], input.shape[1])
         if (not deterministic) and self.config[1] in {"N", "L"}:
             return ((self.W+self.w_noise)*self.w_clip)[input] *\
@@ -100,7 +100,7 @@ class BayesianEmbedding(Embedding):
 
     def eval_reg(self, train_size, **kwargs):
         if self.config[0] == "L":
-            log_alpha_w = self.clip(2*self.log_sigma_w-T.log(self.W**2))
+            log_alpha_w = self.clip_func(2*self.log_sigma_w-T.log(self.W**2))
             KL = alpha_regf(log_alpha_w).sum()
         elif self.config[0] == "N":
             KL_element_w = - self.log_sigma_w + 0.5 * (T.exp(2*self.log_sigma_w) + self.W**2) - 0.5
@@ -109,7 +109,7 @@ class BayesianEmbedding(Embedding):
             KL = T.zeros(1, dtype=floatX).sum()
         
         if self.config[1] == "L":
-            log_alpha_in = self.clip(2*self.log_sigma_in-T.log(self.mu_in**2))
+            log_alpha_in = self.clip_func(2*self.log_sigma_in-T.log(self.mu_in**2))
             KL += alpha_regf(log_alpha_in).sum()
         elif self.config[1] == "N":
             KL_element_in = - self.log_sigma_in + 0.5 * (T.exp(2*self.log_sigma_in) + self.mu_in**2) - 0.5
