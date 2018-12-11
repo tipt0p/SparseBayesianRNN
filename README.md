@@ -47,3 +47,38 @@ Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](h
 * SparseVD W+G+N: LLLLLL
 
 During training, accuracy and compression rates are printed to the output stream.
+
+## Launch language generation experiments
+Scripts for char-level and word-level tasks on PTB dataset are stored in Experiments folder (Char_PTB, Word_PTB).
+```(bash)
+cd Experiments/<dataset>
+python main.py CONFIG
+```
+CONFIG is a 4-chars string defining which model to train. 
+Each element of CONFIG is one of 3 chars:
+* L: probabilistic weight with log-uniform prior and normal approximate posterior
+* D: deterministic learnable weight
+* C: constant weight with all elements equal to 1. 
+
+There are also 2 additional options for group sparsification of neurons in LSTM layer:
+* R: L option ONLY for hidden neurons
+* I: L option ONLY for input neurons
+
+4 chars stand for:
+* CONFIG[0]: LSTM layer, individual weights
+* CONFIG[1]: LSTM layer, group variables for preactivation of gates
+* CONFIG[2]: LSTM layer, group variables for input and hidden neurons
+* CONFIG[3]: fully-connected layer, individual weights
+
+Configs for paper [Bayesian Compression for Natural Language Processing](https://arxiv.org/abs/1810.10927):
+* Original: DCCD 
+* Sparse-VD: LCCL
+* SparseVD-Voc: LCIL
+
+Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX):
+* Original: DCCD 
+* SparseVD W: LCCL
+* SparseVD W+N: LCRL
+* SparseVD W+G+N: LLRL
+
+During training, accuracy and compression rates are printed to the output stream.
