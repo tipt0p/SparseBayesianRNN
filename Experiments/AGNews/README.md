@@ -1,9 +1,9 @@
 ### How to run code on AGNews
 
-#### 1. Dowload data
-```(bash)
-python download_data.py
-```
+#### 1. Download data and pretrained embeddings
+Unpack an [archive with the data and word2vec embeddings](https://drive.google.com/file/d/1U8eoySFDnLzCtqMGm_PK-TbGfwyMPupL/view?usp=sharing) to ../../Data folder.
+
+We also release the code which was used to obtain these files: prepare_data.py
 
 #### 2. Train model
 ```(bash)
