@@ -3,17 +3,7 @@
 This repo contains the code for our EMNLP18 paper [Bayesian Compression for Natural Language Processing](https://arxiv.org/abs/1810.10927) and NeurIPS 2018 CDNNRIA Workshop paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX).
 We showed that Variational Dropout leads to extremely sparse solutions in recurrent neural networks. 
 
-# Environment setup
-
-```(bash)
-sudo apt install virtualenv python-pip python-dev
-virtualenv venv --system-site-packages
-source venv/bin/activate
-
-pip install numpy 'ipython[all]' matplotlib   
-pip install --upgrade https://github.com/Theano/Theano/archive/rel-0.9.0.zip
-pip install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip
-```
+Code uses [Lasagne + Theano](https://lasagne.readthedocs.io/en/latest/user/installation.html).
 
 ## Launch text classification experiments
 Scripts for different datasets (IMDB, AGNews) are stored in Experiments folder.
@@ -47,6 +37,7 @@ Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](h
 * SparseVD W+G+N: LLLLLL
 
 During training, accuracy and compression rates are printed to the output stream.
+Results from the papers are obtained with Python 3.6.3, theano 1.0.1 and lasagne 0.2.dev1.
 
 ## Launch language generation experiments
 Scripts for char-level and word-level tasks on PTB dataset are stored in Experiments folder (Char_PTB, Word_PTB).
@@ -82,6 +73,7 @@ Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](h
 * SparseVD W+G+N: LLRL
 
 During training, accuracy and compression rates are printed to the output stream.
+Results from the papers are obtained with Python 2.7.13, theano 0.9.0.dev-RELEASE and lasagne 0.2.dev1.
 
 # Citation
 
