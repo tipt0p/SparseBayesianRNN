@@ -82,3 +82,19 @@ Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](h
 * SparseVD W+G+N: LLRL
 
 During training, accuracy and compression rates are printed to the output stream.
+
+# Citation
+
+If you found this code useful please cite our paper:
+```
+@InProceedings{SparseBayesianRNN,
+  author = 	"Chirkova, Nadezhda and Lobacheva, Ekaterina and Vetrov, Dmitry",
+  title = 	"Bayesian Compression for Natural Language Processing",
+  booktitle = 	"Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+  year = 	"2018",
+  publisher = 	"Association for Computational Linguistics",
+  pages = 	"2910--2915",
+  location = 	"Brussels, Belgium",
+  url = 	"http://aclweb.org/anthology/D18-1319"
+}
+```
