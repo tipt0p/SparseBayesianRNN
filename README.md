@@ -1,6 +1,6 @@
 # Bayesian Compression of Recurrent neural networks
 
-This repo contains the code for our EMNLP18 paper [Bayesian Compression for Natural Language Processing](https://arxiv.org/abs/1810.10927) and NIPS 2018 CDNNRIA Workshop paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX).
+This repo contains the code for our EMNLP18 paper [Bayesian Compression for Natural Language Processing](https://arxiv.org/abs/1810.10927) and NeurIPS 2018 CDNNRIA Workshop paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX).
 We showed that Variational Dropout leads to extremely sparse solutions in recurrent neural networks. 
 
 # Environment setup
