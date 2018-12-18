@@ -1,6 +1,6 @@
 # Bayesian Compression of Recurrent neural networks
 
-This repo contains the code for our EMNLP18 paper [Bayesian Compression for Natural Language Processing](https://arxiv.org/abs/1810.10927) and NeurIPS 2018 CDNNRIA Workshop paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX).
+This repo contains the code for our EMNLP18 paper [Bayesian Compression for Natural Language Processing](https://arxiv.org/abs/1810.10927) and NeurIPS 2018 CDNNRIA Workshop paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://arxiv.org/abs/1812.05692).
 We showed that Variational Dropout leads to extremely sparse solutions in recurrent neural networks. 
 
 Code uses [Lasagne + Theano](https://lasagne.readthedocs.io/en/latest/user/installation.html).
@@ -30,7 +30,7 @@ Configs for paper [Bayesian Compression for Natural Language Processing](https:/
 * Sparse-VD: LCLCCL
 * SparseVD-Voc: LLLCCL
 
-Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX):
+Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://arxiv.org/abs/1812.05692):
 * Original: DCDCCD 
 * SparseVD W: LCLCCL
 * SparseVD W+N: LLLCLL
@@ -66,7 +66,7 @@ Configs for paper [Bayesian Compression for Natural Language Processing](https:/
 * Sparse-VD: LCCL
 * SparseVD-Voc: LCIL
 
-Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://openreview.net/forum?id=ByMQgZHYoX):
+Configs for paper [Baeysian Sparsification of Gated Recurrent Neural Networks](https://arxiv.org/abs/1812.05692):
 * Original: DCCD 
 * SparseVD W: LCCL
 * SparseVD W+N: LCRL
@@ -77,7 +77,7 @@ Results from the papers are obtained with Python 2.7.13, theano 0.9.0.dev-RELEAS
 
 # Citation
 
-If you found this code useful please cite our paper:
+If you found this code useful please cite one of our papers:
 ```
 @InProceedings{SparseBayesianRNN,
   author = 	"Chirkova, Nadezhda and Lobacheva, Ekaterina and Vetrov, Dmitry",
@@ -88,5 +88,13 @@ If you found this code useful please cite our paper:
   pages = 	"2910--2915",
   location = 	"Brussels, Belgium",
   url = 	"http://aclweb.org/anthology/D18-1319"
+}
+```
+```
+@InProceedings{SparseBayesianGatedRNN,
+  author = 	"Lobacheva, Ekaterina and Chirkova, Nadezhda and Vetrov, Dmitry",
+  title = 	"Bayesian Sparsification of Gated Recurrent Neural Networks",
+  booktitle = 	"Proceedings of the Workshop on Compact Deep Neural Networks with industrial applications, NeurIPS 2018",
+  year = 	"2018"
 }
 ```
